@@ -75,9 +75,30 @@
   border-color: #999999;
 }
 
-.User-circle {
+.User-circle-small {
   background: lightblue;
   border-radius: 50%;
-  width: 100px;
-  height: 100px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-self: center;
+  justify-self: center;
+}
+
+.User-img-round {
+    border-radius: 50%;
+    width:85%; 
+    height:85%;
+    margin: auto;
+}
+
+.Navbar-line {
+  background: #aaaaaa;
+  width: 2px;
+  height: 25px;
+}
+
+.Navbar-line-padding {
+  padding-left: 15px;
+  padding-right: 15px;
 }

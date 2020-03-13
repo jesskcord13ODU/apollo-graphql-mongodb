@@ -9,6 +9,9 @@ import knowledgeIcon from '../img/icons/knowledgeBase.png';
 import notificationIcon from '../img/icons/notifications/0.png'
 import missionThreadIcon from '../img/icons/thread.png'
 
+//User Image
+import userIcon from '../img/faces/MilitaryLady.png'
+
 const Navbar = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light shadow">
@@ -28,6 +31,7 @@ const Navbar = () => {
                 <span className="navbar-toggler-icon"></span>
             </button>
 
+            <div className ="Navbar-line" />
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
                 <li className="nav-item active">
@@ -51,7 +55,7 @@ const Navbar = () => {
                     </a>
                 </li>
                 </ul>
-                <div className="dropdown">
+                <div className="dropdown Navbar-line-padding">
                     <button className="btn btn-secondary  btn-sm dropdown-toggle Navbar-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Thread Name <img src={missionThreadIcon} style={{height: '2vmin'}} />
                     </button>
@@ -60,6 +64,11 @@ const Navbar = () => {
                         <a className="dropdown-item" href="#">Another action</a>
                         <a className="dropdown-item" href="#">Something else here</a>
                     </div>
+                </div>
+                <div className ="Navbar-line" />
+                <div className="Button-padding"/>
+                <div className="User-circle-small">
+                    <img src={userIcon} className="User-img-round" alt="User Icon" />
                 </div>
                 <a href="#">
                     <img src={notificationIcon} className="Navbar-icon" alt="Notifications" />
