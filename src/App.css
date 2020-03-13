@@ -1,0 +1,63 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 6vmin;
+  pointer-events: none;
+}
+
+.Modal-logo {
+  height: 3vmin;
+  pointer-events: none;
+  margin: auto;
+  text-align: center;
+}
+
+.Main {
+  background-image: url('./img/bg.png');
+  background-color: #282c34;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.FOUO-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #008AFF;
+  z-index: 999;
+}
+
+.FOUO-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #008AFF;
+  z-index: 999;
+}
+
+.FOUO-text {
+  color: white;
+  font-weight: bold;
+  font-size: calc(5px + 1vmin);
+  text-align: center;
+}
+
+.Login-padding {
+  padding: 12px;
+}
+
+.Login-body {
+  font-size: calc(3px + 1vmin);
+}
+
+.Button-padding {
+  padding: 6px;
+}
