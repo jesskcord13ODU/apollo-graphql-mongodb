@@ -61,3 +61,23 @@
 .Button-padding {
   padding: 6px;
 }
+
+.Navbar-icon {
+  height: 2.5vmin;
+  padding-left: 15px;
+}
+
+.Navbar-dropdown {
+  color: #000000;
+  background: #E0E0E0;
+  font-size: calc(1px + 1vmin);
+  font-weight: bold;
+  border-color: #999999;
+}
+
+.User-circle {
+  background: lightblue;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}

@@ -1,5 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import logo from '../img/museLogo.png';
+
+//This is the old state use for hooks that ended up not working for this modal,
+//but I'd like to keep this for future reference
 
 // function LoginModal({ callback }) {
 //     const [active, setActive] = useState(false);
@@ -45,10 +48,6 @@ export const LoginButton = () => {
     )
 }
 
-/** Remember this is JSX not HTML. You need to adjust these attributes into their JSX equivalent.
- *  Look at the console for reference. This will help guide you along with the Ctrl+F2 wide edit
- *  of VS Code. In addition it is an issue with Fade I guess.
- */
 const LoginModal = () => {   
     return (
         <div className="modal fade" id="LoginModal" tabIndex="-1" role="dialog">
@@ -61,20 +60,18 @@ const LoginModal = () => {
                         </button>
                     </div>
                 <div className="modal-body">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Username</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Username..." />
+                    <div className="form-group">
+                        <label htmlFor="exampleInputEmail1">Username</label>
+                        <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Enter Username..." />
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password..." />
+                    <div className="form-group">
+                        <label htmlFor="exampleInputPassword1">Password</label>
+                        <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Enter Password..." />
                     </div>
-                    <button type="submit" class="btn btn-primary col-3 button-padding">Log In</button>
+                    <button type="submit" className="btn btn-primary col-3 button-padding">Log In</button>
                 </div>
                 </div>
             </div>
         </div>
     )
 }
-
-//Try to make a default modal that you can set the size & content with passed parameters?
