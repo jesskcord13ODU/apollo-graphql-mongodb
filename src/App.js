@@ -11,6 +11,7 @@ import './App.css';
  * 
  * @param {Array} path - Holds paths for components
  * @param {React.Element} component - Holds component for paths
+ * @param {String} name - Text to be displayed
  */
 const routes =[
   {id: 0, path: ['/login','/'], name: "Login", component: <Login />},
@@ -26,11 +27,13 @@ const initialState = {
 function App() {
   console.log(Routing);
   return (
-    <GlobalStore className={"App Main"} stateI={initialState}>
-      <Header />
-      <Routing routes={routes}/>
-      <Footer />
-    </GlobalStore>
+    <div className={"App Main"}>
+      <GlobalStore stateI={initialState}>
+        <Header />
+        <Routing routes={routes}/>
+        <Footer />
+      </GlobalStore>
+    </div>
   );
 }
 

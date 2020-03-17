@@ -102,3 +102,8 @@
   padding-left: 15px;
   padding-right: 15px;
 }
+
+.Logo-Style {
+  height: 15vh;
+  object-fit: contain;
+}

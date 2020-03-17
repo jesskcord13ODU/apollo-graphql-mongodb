@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { RouterStore } from './store.component.jsx';
 import { Router } from './router.component.jsx';
 
-export const Routing = ({ initialState, routes, className, children }) => {
+export const Routing = ({ initialState, routes, children }) => {
     const component = routes.findIndex(x => {
         const curr = window.location.pathname;
         if (x.path.indexOf(curr) !== -1) {
