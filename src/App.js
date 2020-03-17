@@ -2,13 +2,16 @@ import React from 'react';
 import {Header, Footer} from './components/Landmarks';
 import Login from "./pages/Login"
 import './App.css';
+import { SpecCard } from './components/SpecCard';
+import { SpecList } from './components/SpecList';
 
 function App() {
   return (
     <div className="App">
       <Header />
       <header className="Main">
-          <Login/>
+          {/* <Login/> */}
+          <SpecList />
       </header>
       <Footer />
     </div>

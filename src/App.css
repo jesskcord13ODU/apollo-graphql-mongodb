@@ -102,3 +102,8 @@
   padding-left: 15px;
   padding-right: 15px;
 }
+
+.spec-card {
+  text-align: left;
+  max-width: 500px;
+}
