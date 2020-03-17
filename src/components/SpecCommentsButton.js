@@ -2,7 +2,7 @@ import React from 'react';
 
 const SpecCommentsButton = (props) => {
     return (
-        <img src={require(`../img/icons/comment.png`)} className="" alt="img-fluid" />
+        <img src={require(`../img/icons/comment.png`)} className={"img-fluid"} alt={""} />
     )
 }
 

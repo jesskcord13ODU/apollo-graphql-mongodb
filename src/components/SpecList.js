@@ -31,7 +31,7 @@ const SpecList = (props) => {
     );
 
     return (
-        <div className="list-group">
+        <div className={"list-group"}>
             {listItems}
         </div>
     )
