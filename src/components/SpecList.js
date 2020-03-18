@@ -1,9 +1,9 @@
 import React from 'react';
 import {SpecCard} from './SpecCard';
 
-const SpecList = (props) => {
+export const SpecList = ({ specs }) => {
     
-    let fakeProps = [
+    /*let fakeProps = [
         {
             iconImage: "weather.png",
             title: "Weather",
@@ -26,15 +26,22 @@ const SpecList = (props) => {
 
     props = fakeProps;
 
-    const listItems = props.map((prop) => 
-        <SpecCard iconImage={prop.iconImage} title={prop.title} description={prop.description} bodyImage={prop.bodyImage}/>
-    );
-
+    const listItems = entries.map(ele => 
+        <SpecCard iconImage={ele.iconImage} title={ele.title} description={ele.description} bodyImage={prop.bodyImage}/>
+    );*/
     return (
         <div className={"list-group"}>
-            {listItems}
+            {console.log(specs)}
+            {   
+                specs !== undefined ? specs.map((ele, i) => 
+                    <SpecCard iconImage={ele.iconImage}
+                              title={ele.title}
+                              description={ele.description}
+                              bodyImage={ele.bodyImage}
+                              key={i}/>)
+                      :
+                      "Waiting on data..."
+            }
         </div>
     )
 }
-
-export {SpecList};

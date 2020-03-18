@@ -2,8 +2,9 @@ import React from 'react';
 import SpecCommentsButton from './SpecCommentsButton';
 import SpecContextButton from './SpecContextButton';
 import SpecStatus from './SpecStatus';
+import { Card, CardBody, Row, Col } from 'reactstrap';
 
-const SpecCard = (props) => {
+const SpecCard = ({ iconImage, bodyImage, title, description }) => {
     // let fakeProps = {
     //     iconImage: "weather.png",
     //     title: "Lorem Ipsum",
@@ -11,37 +12,29 @@ const SpecCard = (props) => {
     //     bodyImage: "weatherMap.jpg"
     // }
     // props = fakeProps;
-    
-    const styles = {
-        card: {
-            textAlign: "left",
-            maxWidth: "700px",
-            display: "inline-flex"
-        }
-    }
 
     return (
-        <div style={styles.card} className="card">
-            <div className={"card-body container"}>
-                <div className={"row"}>
-                    <div className={"col-1"}>
-                        <img src={require(`../img/icons/${props.iconImage}`)} className={"img-fluid"}/>
-                    </div>
-                    <div className={"col-7"}>
-                        <h3 className={"card-title"}>{props.title}</h3>
-                        <p className={"card-text"}>{props.description}</p>
-                    </div>
-                    <div className={"col-3"}>
-                        <img src={require(`../img/${props.bodyImage}`)} className={"img-fluid img-thumbnail"}/>
-                    </div>
-                    <div className={"col-1"}>
+        <Card className={"card"}>
+            <CardBody>
+                <Row>
+                    <Col xs={"1"}>
+                        <img src={require(`../img/icons/${iconImage}`)} className={"img-fluid"}/>
+                    </Col>
+                    <Col xs={"7"}>
+                        <h3 className={"card-title"}>{title}</h3>
+                        <p className={"card-text"}>{description}</p>
+                    </Col>
+                    <Col xs={"3"}>
+                        <img src={require(`../img/${bodyImage}`)} className={"img-fluid img-thumbnail"}/>
+                    </Col>
+                    <Col xs={"1"}>
                         <SpecContextButton />
                         <SpecStatus />
                         <SpecCommentsButton />
-                    </div>
-                </div>
-            </div>
-        </div>
+                    </Col>
+                </Row>
+            </CardBody>
+        </Card>
     )
 }
 
