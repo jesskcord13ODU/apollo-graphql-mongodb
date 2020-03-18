@@ -3,57 +3,15 @@ import {SpecCard} from './SpecCard';
 
 const NewSpecButton = () => {
     return (
-        <div className="card shadow-sm spec-card none bg-primary text-white">
+        <div className="card shadow-sm spec-create-button text-primary">
             <div className={"card-body container"}>
-                <div className={"row"}>
-                    <a href={"#"} className={"stretched-link"}/>
-                    <div className={"col-1"}>
-                        {/* <img src={require(`../img/icons/eye.png`)} className={"img-fluid"}/> */}
-                    </div>
-                    <div className={"col-11"}>
-                        <h3 className={"card-title"}>Create New Specification</h3>
-                    </div>
-                </div>
+                <h3 className={"card-title"}><a href={"#"} className={"stretched-link"}>Create New Specification</a></h3>
             </div>
         </div>
     );
 }
 
-const SpecList = (props) => {
-    
-    let fakeProps = [
-        {
-            iconImage: "weather.png",
-            title: "Weather",
-            description: "Lorem ipsum ad infinitum",
-            bodyImage: "weatherMap.jpg",
-            color: "red"
-        },
-        {
-            iconImage: "terrain.png",
-            title: "Terrain",
-            description: "Lorem ipsum ad infinitum",
-            bodyImage: "ambushMap.png",
-            color: "blue"
-        },
-        {
-            iconImage: "weather.png",
-            title: "Lorem Ipsum Long",
-            description: "Lorem ipsum ad infinitum. Lorem ipsum ad infinitum. Lorem ipsum ad infinitum. Lorem ipsum ad infinitum.",
-            bodyImage: "weatherMap.jpg",
-            color: "red"
-        }
-    ]
-
-    props = fakeProps;
-
-    const listItems = props.map((prop) => 
-        <SpecCard iconImage={prop.iconImage} title={prop.title} description={prop.description} bodyImage={prop.bodyImage} color={prop.color}/>
-    );
-
-    listItems.push(
-        <NewSpecButton />
-    );
+export const SpecList = ({ specs }) => {
 
     return (
         <div className={"card bg-light spec-list container"}>
@@ -71,12 +29,22 @@ const SpecList = (props) => {
                 </div>
             </div>
             <div className={"card-body row"}>
-                <div className={"list-group overflow-auto mh-100"}>
-                    {listItems}
+                <div className={"list-group"}>
+                    {console.log(specs)}
+                    {   
+                        specs !== undefined ? specs.map((ele, i) => 
+                            <SpecCard iconImage={ele.iconImage}
+                                    title={ele.title}
+                                    description={ele.description}
+                                    bodyImage={ele.bodyImage}
+                                    color={ele.color}
+                                    key={i}/>)
+                            :
+                            "Waiting on data..."
+                    }
+                    <NewSpecButton />
                 </div>
             </div>
         </div>
     )
 }
-
-export {SpecList};

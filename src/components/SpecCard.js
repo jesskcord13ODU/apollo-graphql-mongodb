@@ -1,60 +1,50 @@
 import React from 'react';
+import { Card, CardBody, Container, Row, Col } from 'reactstrap';
 
-const SpecContextButton = (props) => {
+const SpecContextButton = () => {
     return (
         <img src={require(`../img/icons/ellipsis.png`)} className={"img-fluid"} alt={""} />
     )
 }
 
-const SpecCommentsButton = (props) => {
+const SpecCommentsButton = () => {
     return (
         <img src={require(`../img/icons/comment.png`)} className={"img-fluid"} alt={""} />
     )
 }
 
-const SpecStatus = (props) => {
+const SpecStatus = () => {
     return (
         <img src={require(`../img/icons/checkmark.png`)} className={"img-fluid"} alt={""} />
     )
 }
 
-const SpecCard = (props) => {
-    // let fakeProps = {
-    //     iconImage: "weather.png",
-    //     title: "Lorem Ipsum",
-    //     description: "Lorem ipsum ad infinitum",
-    //     bodyImage: "weatherMap.jpg",
-    //     color: "gray"
-    // }
-    // props = fakeProps;
+const SpecCard = ({ iconImage, bodyImage, title, description, color }) => {
 
     return (
-        <div className={"card shadow-sm spec-card " + props.color}>
-            <div className={"card-body container"}>
-                <div className={"row"}>
-                    <a href={"#"} className={"stretched-link"}/>
-                    <div className={"col-1"}>
-                            <img src={require(`../img/icons/${props.iconImage}`)} className={"img-fluid"}/>
-                    </div>
-                    <div className={"col-7"}>
-                        <h3 className={"card-title"}>{props.title}</h3>
-                        <p className={"card-text"}>{props.description}</p>
-                    </div>
-                    <div className={"col-3"}>
-                        <img src={require(`../img/${props.bodyImage}`)} className={"img-fluid img-thumbnail"}/>
-                    </div>
-                    <div className={"col-1"}>
-                        <div>
-                            <SpecContextButton/>
-                        </div>
-                        <div>
+        <Card className={"shadow-sm spec-card " + color}>
+            <CardBody>
+                <Container>
+                    <Row>
+                        <Col xs={"1"}>
+                            <img src={require(`../img/icons/${iconImage}`)} className={"img-fluid"}/>
+                        </Col>
+                        <Col xs={"7"}>
+                            <h3 className={"card-title"}>{title}</h3>
+                            <p className={"card-text"}>{description}</p>
+                        </Col>
+                        <Col xs={"3"}>
+                            <img src={require(`../img/${bodyImage}`)} className={"img-fluid img-thumbnail"}/>
+                        </Col>
+                        <Col xs={"1"}>
+                            <SpecContextButton />
                             <SpecStatus />
-                            <SpecCommentsButton/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                            <SpecCommentsButton />
+                        </Col>
+                    </Row>
+                </Container>
+            </CardBody>
+        </Card>
     )
 }
 
