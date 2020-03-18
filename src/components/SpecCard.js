@@ -1,31 +1,40 @@
 import React from 'react';
-import SpecCommentsButton from './SpecCommentsButton';
-import SpecContextButton from './SpecContextButton';
-import SpecStatus from './SpecStatus';
+
+const SpecContextButton = (props) => {
+    return (
+        <img src={require(`../img/icons/ellipsis.png`)} className={"img-fluid"} alt={""} />
+    )
+}
+
+const SpecCommentsButton = (props) => {
+    return (
+        <img src={require(`../img/icons/comment.png`)} className={"img-fluid"} alt={""} />
+    )
+}
+
+const SpecStatus = (props) => {
+    return (
+        <img src={require(`../img/icons/checkmark.png`)} className={"img-fluid"} alt={""} />
+    )
+}
 
 const SpecCard = (props) => {
     // let fakeProps = {
     //     iconImage: "weather.png",
     //     title: "Lorem Ipsum",
     //     description: "Lorem ipsum ad infinitum",
-    //     bodyImage: "weatherMap.jpg"
+    //     bodyImage: "weatherMap.jpg",
+    //     color: "gray"
     // }
     // props = fakeProps;
-    
-    const styles = {
-        card: {
-            textAlign: "left",
-            maxWidth: "700px",
-            display: "inline-flex"
-        }
-    }
 
     return (
-        <div style={styles.card} className="card">
+        <div className={"card shadow-sm spec-card " + props.color}>
             <div className={"card-body container"}>
                 <div className={"row"}>
+                    <a href={"#"} className={"stretched-link"}/>
                     <div className={"col-1"}>
-                        <img src={require(`../img/icons/${props.iconImage}`)} className={"img-fluid"}/>
+                            <img src={require(`../img/icons/${props.iconImage}`)} className={"img-fluid"}/>
                     </div>
                     <div className={"col-7"}>
                         <h3 className={"card-title"}>{props.title}</h3>
@@ -35,9 +44,13 @@ const SpecCard = (props) => {
                         <img src={require(`../img/${props.bodyImage}`)} className={"img-fluid img-thumbnail"}/>
                     </div>
                     <div className={"col-1"}>
-                        <SpecContextButton />
-                        <SpecStatus />
-                        <SpecCommentsButton />
+                        <div>
+                            <SpecContextButton/>
+                        </div>
+                        <div>
+                            <SpecStatus />
+                            <SpecCommentsButton/>
+                        </div>
                     </div>
                 </div>
             </div>

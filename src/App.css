@@ -105,5 +105,23 @@
 
 .spec-card {
   text-align: left;
-  max-width: 500px;
+  margin: .25rem;
+  border-top-width: .25rem;
+  border-radius: .25rem;
+}
+
+.spec-card.red {
+  border-top-color: red;
+}
+
+.spec-card.blue {
+  border-top-color: blue;
+}
+
+.spec-card.white {
+  border-top-color: white;
+}
+
+.spec-card.none {
+  border-top-color: transparent;
 }

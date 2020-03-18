@@ -1,9 +1,9 @@
 import React from 'react';
 import {Header, Footer} from './components/Landmarks';
 import Login from "./pages/Login"
+import Specifications from "./pages/Specifications"
+import {SpecList} from "./components/SpecList";
 import './App.css';
-import { SpecCard } from './components/SpecCard';
-import { SpecList } from './components/SpecList';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <Header />
       <header className="Main">
           {/* <Login/> */}
-          <SpecList />
+          <Specifications />
       </header>
       <Footer />
     </div>
