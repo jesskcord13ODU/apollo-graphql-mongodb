@@ -7,7 +7,9 @@ const NewSpecButton = () => {
     return (
         <div className="card shadow-sm spec-create-button text-primary">
             <div className={"card-body container"}>
-                <h3 className={"card-title"}><a href={"#"} className={"stretched-link"}>Create New Specification</a></h3>
+                <a href={"#"} className={"stretched-link"}>
+                    <img src={require(`../img/icons/plusCircle.png`)} className={"img-fluid"} alt={"Create New Specification"} />
+                </a>
             </div>
         </div>
     );
