@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import {Header, Footer} from './components/Landmarks';
 import Login from "./pages/Login"
+import {SpecList} from "./components/SpecList";
 import './App.css';
 import { SpecsContainer } from './components/SpecificationsContainer.component.jsx';
 
@@ -12,19 +13,22 @@ const specificationsT = [
               iconImage: "weather.png",
               title: "Weather",
               description: "Lorem ipsum ad infinitum",
-              bodyImage: "weatherMap.jpg"
+              bodyImage: "weatherMap.jpg",
+              color: "red"
           },
           {
               iconImage: "terrain.png",
               title: "Terrain",
               description: "Lorem ipsum ad infinitum",
-              bodyImage: "ambushMap.png"
+              bodyImage: "ambushMap.png",
+              color: "green"
           },
           {
               iconImage: "weather.png",
               title: "Lorem Ipsum3",
               description: "Lorem ipsum ad infinitum",
-              bodyImage: "weatherMap.jpg"
+              bodyImage: "weatherMap.jpg",
+              color: "blue"
           }
       ]
   },
@@ -35,19 +39,22 @@ const specificationsT = [
               iconImage: "error.png",
               title: "Possible Enemy Armaments",
               description: "MP5, AK-47, SCAR, RPG, Vector",
-              bodyImage: "arms.jpg"
+              bodyImage: "arms.jpg",
+              color: "red"
           },
           {
               iconImage: "knowledgeBase.png",
               title: "Intel Analysis",
               description: "Still waiting on final results",
               bodyImage: "analysis.jpg",
+              color: "green"
           },
           {
               iconImage: "key.png",
               title: "Auth Chain",
               description: "Command chain to be deteremined soon",
               bodyImage: "faces/Desert.png",
+              color: "purple"
           }
       ]
   },
@@ -59,12 +66,14 @@ const specificationsT = [
               title: "Prepartion",
               description: "This mission requires these steps to prepare",
               bodyImage: "faces/Woman.png",
+              color: "blue"
           },
           {
               iconImage: "download.png",
               title: "Deployment",
               description: "These units will be deployed here",
               bodyImage: "faces/Tank.png",
+              color: "purple"
           }
       ]
   },
@@ -76,6 +85,7 @@ const specificationsT = [
               title: "Units",
               description: "Combat Ready Units",
               bodyImage: "faces/MilitaryGuy.png",
+              color: "orange"
           }
       ]
   }

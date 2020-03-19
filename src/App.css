@@ -110,7 +110,34 @@ body {
 
 .spec-card {
   text-align: left;
-  max-width: 500px;
+  margin: .25rem;
+  border-top-width: .25rem;
+  border-radius: .25rem;
+}
+
+.spec-card.red {
+  border-top-color: red;
+}
+
+.spec-card.blue {
+  border-top-color: blue;
+}
+
+.spec-card.white {
+  border-top-color: white;
+}
+
+.spec-card.none {
+  border-top-color: transparent;
+}
+
+.spec-create-button {
+  background-color: transparent;
+  margin: .25rem;
+  border: .25rem dashed blue;
+  border-top-width: .25rem;
+  border-top-style: solid;
+  border-radius: .25rem;
 }
 
 .user-scroll {
@@ -119,10 +146,4 @@ body {
 
 .tmp-fix {
   padding-top: 100px;
-}
-
-.card {
-  text-align: "left";
-  max-width: "700px";
-  display: "inline-flex";
 }

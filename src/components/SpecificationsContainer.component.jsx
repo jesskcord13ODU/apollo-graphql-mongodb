@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Card, CardBody } from 'reactstrap';
 import { SpecList } from './SpecList';
+import { CommentList } from './CommentList';
 
 // The props should eventually be expaned to what is necessary
 export const SpecsContainer = ({ specifications, specSelected }) => {
@@ -43,6 +44,45 @@ export const SpecsContainer = ({ specifications, specSelected }) => {
                 </section>
             </CardBody>
         </Card>
+
+        <section title="specifications" >
+            <nav>{specifications.map((ele, i) => 
+                <SpecificationTab tabChange={handleChange}
+                                name={ele.category}
+                                key={i}/>)}
+                <SpecificationTab name={"+"} tabChange={addTab} />
+            </nav>
+            <div className={"card"}>
+                <div className={"card-body container"}>
+                    <div className={"row"}>
+                        <div className={"col-8"}>
+                            <div aria-label={currTab}>
+                                {console.log(spec)}
+                                <SpecList specs={spec.specEntries} />
+                            </div>
+                        </div>
+                        <div className={"col-4"}>
+                            <CommentList/>  
+                        </div>
+                    </div>               
+                </div>
+            </div>
+        </section>
+
+
+
+        // <section title="specifications" >
+        //     <nav>{specifications.map((ele, i) => 
+        //         <SpecificationTab tabChange={handleChange}
+        //                           name={ele.category}
+        //                           key={i}/>)}
+        //         <SpecificationTab name={"+"} tabChange={addTab} />
+        //     </nav>
+        //     <div aria-label={currTab}>
+        //         {console.log(spec)}
+        //         <SpecList specs={spec.specEntries} />
+        //     </div>
+        // </section>
     );
 }
 

@@ -1,47 +1,50 @@
 import React from 'react';
 import {SpecCard} from './SpecCard';
 
-export const SpecList = ({ specs }) => {
-    
-    /*let fakeProps = [
-        {
-            iconImage: "weather.png",
-            title: "Weather",
-            description: "Lorem ipsum ad infinitum",
-            bodyImage: "weatherMap.jpg"
-        },
-        {
-            iconImage: "terrain.png",
-            title: "Terrain",
-            description: "Lorem ipsum ad infinitum",
-            bodyImage: "ambushMap.png"
-        },
-        {
-            iconImage: "weather.png",
-            title: "Lorem Ipsum3",
-            description: "Lorem ipsum ad infinitum",
-            bodyImage: "weatherMap.jpg"
-        }
-    ]
-
-    props = fakeProps;
-
-    const listItems = entries.map(ele => 
-        <SpecCard iconImage={ele.iconImage} title={ele.title} description={ele.description} bodyImage={prop.bodyImage}/>
-    );*/
+const NewSpecButton = () => {
     return (
-        <div className={"list-group"}>
-            {console.log(specs)}
-            {   
-                specs !== undefined ? specs.map((ele, i) => 
-                    <SpecCard iconImage={ele.iconImage}
-                              title={ele.title}
-                              description={ele.description}
-                              bodyImage={ele.bodyImage}
-                              key={i}/>)
-                      :
-                      "Waiting on data..."
-            }
+        <div className="card shadow-sm spec-create-button text-primary">
+            <div className={"card-body container"}>
+                <h3 className={"card-title"}><a href={"#"} className={"stretched-link"}>Create New Specification</a></h3>
+            </div>
+        </div>
+    );
+}
+
+export const SpecList = ({ specs }) => {
+
+    return (
+        <div className={"card bg-light spec-list container"}>
+            <div className={"card-header row"}>
+                <div className={"col d-flex justify-content-start"}>
+                    <h3>Specifications</h3>
+                </div>
+                <div className={"col d-flex justify-content-end"}>
+                    <div className={"input-group mb-3"}>
+                        <input type={"text"} className={"form-control"} placeholder={"Test"}/>
+                        <div className={"input-group-append"}>
+                            <button className={"btn btn-secondary"} type={"button"}>Filter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className={"card-body row"}>
+                <div className={"list-group"}>
+                    {console.log(specs)}
+                    {   
+                        specs !== undefined ? specs.map((ele, i) => 
+                            <SpecCard iconImage={ele.iconImage}
+                                    title={ele.title}
+                                    description={ele.description}
+                                    bodyImage={ele.bodyImage}
+                                    color={ele.color}
+                                    key={i}/>)
+                            :
+                            "Waiting on data..."
+                    }
+                    <NewSpecButton />
+                </div>
+            </div>
         </div>
     )
 }
