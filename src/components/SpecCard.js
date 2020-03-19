@@ -1,28 +1,75 @@
-import React from 'react';
-import { Card, CardBody, Container, Row, Col, CardImg } from 'reactstrap';
+import React, { useState} from 'react';
+import { Card, CardBody, Container, Row, Col, Modal, ModalBody} from 'reactstrap';
 
-const SpecContextButton = () => {
+
+
+const SpecCard = ({ iconImage, bodyImage, title, description, color, order}) => {
+    
+    const [modal, setModal] = useState(false);
+
+    const toggleEditModal = () => setModal(!modal);
+    
+    //--Child Components--//
+
+    const EditModal = () => {
+        return (
+            <Modal isOpen={modal} toggle={toggleEditModal}>
+                <ModalBody>
+                   Card clicked: {title} 
+                </ModalBody>
+            </Modal>
+        );
+    }
+    
+    const SpecContextButton = () => {
+        return (
+            <img src={require(`../img/icons/ellipsis.png`)} className={"img-fluid"} alt={""} />
+        )
+    }
+    
+    const SpecCommentsButton = () => {
+        return (
+            <img src={require(`../img/icons/comment.png`)} className={"img-fluid"} alt={""} />
+        )
+    }
+    
+    const SpecStatus = () => {
+        return (
+            <img src={require(`../img/icons/checkmark.png`)} className={"img-fluid"} alt={""} />
+        )
+    }
+
+    //--Event Handlers--//
+
+    const doubleClickHandler = (ev) => {
+        console.log("Card clicked: " + title);
+        toggleEditModal();
+    }
+
+    const dragStartHandler = (ev) => {
+        ev.dataTransfer.dropEffect = "move";  
+    }
+
+    const dragOverHandler = (ev) => {
+        ev.preventDefault();
+        ev.dataTransfer.dropEffect = "move";
+    }
+
+    const dropHandler = (ev) => {
+        ev.preventDefault();
+        // ev.target.parentNode.insertBefore(document.createTextNode("test"), ev.target);
+    }
+
     return (
-        <img src={require(`../img/icons/ellipsis.png`)} className={"img-fluid"} alt={""} />
-    )
-}
-
-const SpecCommentsButton = () => {
-    return (
-        <img src={require(`../img/icons/comment.png`)} className={"img-fluid"} alt={""} />
-    )
-}
-
-const SpecStatus = () => {
-    return (
-        <img src={require(`../img/icons/checkmark.png`)} className={"img-fluid"} alt={""} />
-    )
-}
-
-const SpecCard = ({ iconImage, bodyImage, title, description, color }) => {
-
-    return (
-        <Card className={"shadow-sm spec-card " + color}>
+        <Card 
+            draggable={"true"}
+            onDoubleClick={doubleClickHandler}
+            onDragStart={dragStartHandler}
+            onDragOver={dragOverHandler}
+            onDrop={dropHandler}
+            className={"shadow-sm spec-card " + color}
+            >
+            <EditModal/> {/* isOpen={modal} toggle={toggle}*/}
             <CardBody>
                 <Container>
                     <Row>
