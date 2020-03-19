@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {SpecCard} from './SpecCard';
 import { Card, CardHeader, CardBody, Row, Col, InputGroup,
-         InputGroupAddon, Button, Input, ListGroup } from 'reactstrap';
+         InputGroupAddon, Button, Input, ListGroup, Tooltip } from 'reactstrap';
 
 const NewSpecButton = () => {
+    const [open, setOpen] = useState(false);
+
+    const toggle = () => {
+        setOpen(!open);
+    }
+
     return (
         <div className="card shadow-sm spec-create-button text-primary">
             <div className={"card-body container"}>
-                <a href={"#"} className={"stretched-link"}>
-                    <img src={require(`../img/icons/plusCircle.png`)} className={"img-fluid"} alt={"Create New Specification"} />
-                </a>
+                <img id="newSpec" src={require(`../img/icons/plusCircle.png`)} className={"img-fluid"} alt={"Create New Specification"} />
+                <Tooltip placement={"top"} isOpen={open} target={"newSpec"} toggle={toggle}>
+                    Create New Specifications
+                </Tooltip>
             </div>
         </div>
     );

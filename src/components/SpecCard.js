@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardBody, Container, Row, Col } from 'reactstrap';
+import { Card, CardBody, Container, Row, Col, CardImg } from 'reactstrap';
 
 const SpecContextButton = () => {
     return (
