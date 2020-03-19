@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {SpecCard} from './SpecCard';
-import { Card, CardHeader, CardBody, Row, Col, InputGroup,
+import { Card, CardHeader, CardBody, Col, InputGroup,
          InputGroupAddon, Button, Input, ListGroup, Tooltip } from 'reactstrap';
 
 const NewSpecButton = () => {

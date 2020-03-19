@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardBody, Container, Row, Col, CardImg } from 'reactstrap';
+import { Card, CardBody, Container, Row, Col } from 'reactstrap';
 
 const SpecContextButton = () => {
     return (
@@ -19,22 +19,22 @@ const SpecStatus = () => {
     )
 }
 
-const SpecCard = ({ iconImage, bodyImage, title, description, color }) => {
+export const SpecCard = ({ iconImage, bodyImage, title, description, color }) => {
 
     return (
-        <Card className={"shadow-sm spec-card " + color}>
+        <Card className={`shadow-sm spec-card ${color}`}>
             <CardBody>
                 <Container>
                     <Row>
                         <Col xs={"1"}>
-                            <img src={require(`../img/icons/${iconImage}`)} className={"img-fluid"}/>
+                            <img src={require(`../img/icons/${iconImage}`)} className={"img-fluid"} alt={"Icon"}/>
                         </Col>
                         <Col xs={"7"}>
                             <h3 className={"card-title"}>{title}</h3>
                             <p className={"card-text"}>{description}</p>
                         </Col>
                         <Col xs={"3"}>
-                            <img src={require(`../img/${bodyImage}`)} className={"img-fluid img-thumbnail"}/>
+                            <img src={require(`../img/${bodyImage}`)} className={"img-fluid img-thumbnail"} alt={"Body"}/>
                         </Col>
                         <Col xs={"1"}>
                             <SpecContextButton />
@@ -47,5 +47,3 @@ const SpecCard = ({ iconImage, bodyImage, title, description, color }) => {
         </Card>
     )
 }
-
-export {SpecCard}

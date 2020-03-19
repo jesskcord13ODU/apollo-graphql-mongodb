@@ -13,8 +13,7 @@ body {
 }
 
 .App-logo {
-  height: 6vmin;
-  pointer-events: none;
+  height: 2.5vmin;
 }
 
 .Modal-logo {
@@ -62,7 +61,8 @@ body {
 }
 
 .Navbar-icon {
-  height: 2.5vmin;
+  height: 1.5em;
+  width: auto;
   padding-left: 15px;
 }
 
@@ -95,6 +95,7 @@ body {
   background: #aaaaaa;
   width: 2px;
   height: 25px;
+  list-style: none;
 }
 
 .Navbar-line-padding {
@@ -145,4 +146,13 @@ body {
 
 .tmp-fix {
   padding-top: 100px;
+}
+
+.no-lst {
+  list-style: none;
+}
+
+.thread-button::after {
+  vertical-align: -40%;
+  content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAo0lEQVRYhe2VYQqAIAyFX9EVCrr/jfJHx6lfhtjMuVaL2AMRRLeP56aA68PaBGMFMFsCqELEgBJgFQgpQEjmyQJgBLBAwQkpALQg7tRAPkLpUFcJWNtD7W/KNTCDc1QCvQTrFQFEcgAHMAfQbMNUVOula0fL/taBqPxxOjlj7oADvPkbkjJ34IkuKFU+uc4BEFnL1aevgFt8USKnWpOoA5hfwQ6GPU4HtBOdYQAAAABJRU5ErkJggg==");
 }
