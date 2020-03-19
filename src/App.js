@@ -16,21 +16,24 @@ const mission = {
               title: "Weather",
               description: "Lorem ipsum ad infinitum",
               bodyImage: "weatherMap.jpg",
-              color: "red"
+              color: "red",
+              order: "1",
           },
           {
               iconImage: "terrain.png",
               title: "Terrain",
               description: "Lorem ipsum ad infinitum",
               bodyImage: "ambushMap.png",
-              color: "green"
+              color: "green",
+              order: "2",
           },
           {
               iconImage: "weather.png",
               title: "Lorem Ipsum3",
               description: "Lorem ipsum ad infinitum",
               bodyImage: "weatherMap.jpg",
-              color: "blue"
+              color: "blue",
+              order: "3",
           }
       ]
     },

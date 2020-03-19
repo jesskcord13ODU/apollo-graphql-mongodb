@@ -41,20 +41,21 @@ export const SpecList = ({ specs }) => {
                 </Col>
             </CardHeader>
             <CardBody>
-                <ListGroup>
+                <div>
                     {   
                         specs !== undefined ? specs.map((ele, i) => 
-                            <SpecCard iconImage={ele.iconImage}
+                                <SpecCard iconImage={ele.iconImage}
                                     title={ele.title}
                                     description={ele.description}
                                     bodyImage={ele.bodyImage}
                                     color={ele.color}
+                                    order={ele.order}
                                     key={i}/>)
                             :
                             "Waiting on data..."
                     }
                     <NewSpecButton />
-                </ListGroup>
+                </div>
             </CardBody>
         </Card>
     )
