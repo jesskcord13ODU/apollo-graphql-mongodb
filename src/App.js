@@ -3,10 +3,12 @@ import {Header, Footer} from './components/Landmarks';
 import Login from "./pages/Login"
 import {SpecList} from "./components/SpecList";
 import './App.css';
+import { Container, Row, Col } from 'reactstrap';
 import { SpecsContainer } from './components/SpecificationsContainer.component.jsx';
 
-const specificationsT = [
-  {
+const mission = {
+    missionId: "JCAG",
+    specificationsT: [{
       category: "Environment",
       specEntries: [
           {
@@ -31,8 +33,8 @@ const specificationsT = [
               color: "blue"
           }
       ]
-  },
-  {
+    },
+    {
       category: "Forces",
       specEntries: [
           {
@@ -88,18 +90,26 @@ const specificationsT = [
               color: "orange"
           }
       ]
-  }
-];
+  }]
+};
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <main className="Main">
-          <SpecsContainer specifications={specificationsT} />
-      </main>
-      <Footer />
-    </div>
+    <Container fluid className={"App Main"}>
+        <Row className={"align-self-start"}>
+            <Header />
+        </Row>
+        <Row className={"align-self-center"}>
+            <Col xs={"10"} className={""}>
+                <main>
+                    <SpecsContainer specifications={mission.specificationsT}/>
+                </main>
+            </Col>
+        </Row>
+        <Row className={"align-self-end"}>
+            <Footer />
+        </Row>
+    </Container>
   );
 }
 

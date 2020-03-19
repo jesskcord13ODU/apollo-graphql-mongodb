@@ -1,5 +1,7 @@
 import React from 'react';
 import {SpecCard} from './SpecCard';
+import { Card, CardHeader, CardBody, Row, Col, InputGroup,
+         InputGroupAddon, Button, Input, ListGroup } from 'reactstrap';
 
 const NewSpecButton = () => {
     return (
@@ -14,23 +16,22 @@ const NewSpecButton = () => {
 export const SpecList = ({ specs }) => {
 
     return (
-        <div className={"card bg-light spec-list container"}>
-            <div className={"card-header row"}>
-                <div className={"col d-flex justify-content-start"}>
+        <Card className={"card bg-light spec-list container"}>
+            <CardHeader>
+                <Col className={"d-flex justify-content-start"}>
                     <h3>Specifications</h3>
-                </div>
-                <div className={"col d-flex justify-content-end"}>
-                    <div className={"input-group mb-3"}>
-                        <input type={"text"} className={"form-control"} placeholder={"Test"}/>
-                        <div className={"input-group-append"}>
-                            <button className={"btn btn-secondary"} type={"button"}>Filter</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className={"card-body row"}>
-                <div className={"list-group"}>
-                    {console.log(specs)}
+                </Col>
+                <Col className={"d-flex justify-content-end"}>
+                    <InputGroup mb={"3"}>
+                        <Input type={"text"} className={"form-control"} placeholder={"Test"}/>
+                        <InputGroupAddon addonType={"append"}>
+                            <Button color={"secondary"}>Filter</Button>
+                        </InputGroupAddon>
+                    </InputGroup>
+                </Col>
+            </CardHeader>
+            <CardBody>
+                <ListGroup>
                     {   
                         specs !== undefined ? specs.map((ele, i) => 
                             <SpecCard iconImage={ele.iconImage}
@@ -43,8 +44,8 @@ export const SpecList = ({ specs }) => {
                             "Waiting on data..."
                     }
                     <NewSpecButton />
-                </div>
-            </div>
-        </div>
+                </ListGroup>
+            </CardBody>
+        </Card>
     )
 }
