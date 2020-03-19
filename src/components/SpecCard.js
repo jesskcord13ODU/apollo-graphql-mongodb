@@ -3,7 +3,7 @@ import { Card, CardBody, Container, Row, Col, Modal, ModalBody} from 'reactstrap
 
 
 
-const SpecCard = ({ iconImage, bodyImage, title, description, color, order}) => {
+export const SpecCard = ({ iconImage, bodyImage, title, description, color, order}) => {
     
     const [modal, setModal] = useState(false);
 
