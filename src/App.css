@@ -134,9 +134,10 @@ body {
 .spec-create-button {
   background-color: transparent;
   margin: .25rem;
-  border: .25rem dashed blue;
-  border-top-width: .25rem;
-  border-top-style: solid;
+  border: .25rem dashed #cccccc;
+  /* border-top-color: blue; */
+  /* border-top-width: .25rem; */
+  /* border-top-style: solid; */
   border-radius: .25rem;
 }
 
