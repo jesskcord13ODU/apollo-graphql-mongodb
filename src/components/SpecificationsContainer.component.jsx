@@ -28,41 +28,29 @@ export const SpecsContainer = ({ specifications, specSelected }) => {
     }
 
     return (
-        <Card role={"section"} aria-label={"specifications"}>
+        <div className={"spec-page"}>
             <nav>{specifications.map((ele, i) => 
                 <SpecificationTab tabChange={handleChange}
                                 name={ele.category}
                                 key={i}/>)}
                 <SpecificationTab name={"+"} tabChange={addTab} />
             </nav>
-            <CardBody>
-                <Row>
-                    <Col xs={"8"}>
-                        <article title={currTab}>
-                            {console.log(spec)}
-                            <SpecList specs={spec.specEntries} />
-                        </article>
-                    </Col>
-                    <Col xs={"4"}>
-                        <CommentList/>  
-                    </Col>
-                </Row>               
-            </CardBody>
-        </Card>
-
-
-        // <section title="specifications" >
-        //     <nav>{specifications.map((ele, i) => 
-        //         <SpecificationTab tabChange={handleChange}
-        //                           name={ele.category}
-        //                           key={i}/>)}
-        //         <SpecificationTab name={"+"} tabChange={addTab} />
-        //     </nav>
-        //     <div aria-label={currTab}>
-        //         {console.log(spec)}
-        //         <SpecList specs={spec.specEntries} />
-        //     </div>
-        // </section>
+            <Card className={"spec-page"} role={"section"} aria-label={"specifications"}>
+                <CardBody>
+                    <Row>
+                        <Col xs={"8"}>
+                            <article title={currTab}>
+                                {console.log(spec)}
+                                <SpecList specs={spec.specEntries} />
+                            </article>
+                        </Col>
+                        <Col xs={"4"}>
+                            <CommentList/>  
+                        </Col>
+                    </Row>               
+                </CardBody>
+            </Card>
+        </div>
     );
 }
 

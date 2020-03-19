@@ -12,7 +12,8 @@ const NewSpecButton = () => {
 
     return (
         <div className="card shadow-sm spec-create-button text-primary">
-            <div className={"card-body container"}>
+            <div className={"card-body"}>
+                {/* <div className={"card-title"}> Create New Specification</div> */}
                 <img id="newSpec" src={require(`../img/icons/plusCircle.png`)} className={"img-fluid"} alt={"Create New Specification"} />
                 <Tooltip placement={"top"} isOpen={open} target={"newSpec"} toggle={toggle}>
                     Create New Specifications
