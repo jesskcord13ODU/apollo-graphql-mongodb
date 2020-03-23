@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Header, Footer} from './components/Landmarks';
 import Login from "./components/Login.js"
 import {SpecList} from "./components/SpecList";
@@ -97,23 +97,35 @@ const mission = {
 };
 
 function App() {
-  return (
-    <Container fluid className={"m-0 App Main d-flex flex-column align-items-stretch"}>
-      <Header className={"align-self-start"}/>
-      <Container fluid className={"align-self-center h-100"} >
-        <Row className={"align-items-center h-100"}>
-            <Col></Col>
-            <Col xs={"10"}>
-                <main>
-                  <SpecsContainer specifications={mission.specificationsT}/>
-                </main>
-            </Col>
-            <Col></Col>
-        </Row>
-      </Container>
-      <Footer className={"align-self-end"}/>
-    </Container>
-  );
+    const [Mission, setMission] = useState();
+
+    useEffect(() => {
+        fetch(`http://${process.env.REACT_APP_HOST}/retrieveMissions`)
+            .then(raw => raw.json())
+            .then(result => setMission(result[0]));
+    }, [])
+
+    return (
+        <Container fluid className={"m-0 App Main d-flex flex-column align-items-stretch"}>
+        <Header className={"align-self-start"}/>
+        <Container className={"align-self-center h-100"} >
+            <Row className={"align-items-center h-100"}>
+                <Col></Col>
+                <Col xs={"10"}>
+                    <main>
+                        {Mission !== undefined ?
+                            <SpecsContainer specifications={Mission.specificationsT}/>
+                            :
+                            <h2>Loading</h2>
+                        }
+                    </main>
+                </Col>
+                <Col></Col>
+            </Row>
+        </Container>
+        <Footer className={"align-self-end"}/>
+        </Container>
+    );
 }
 
 export default App;
