@@ -104,12 +104,10 @@ body {
   padding-right: 15px;
 }
 
-<<<<<<< HEAD
 .Logo-Style {
   height: 15vh;
   object-fit: contain;
 }
-=======
 .spec-card {
   text-align: left;
   margin: 1rem;
@@ -163,4 +161,3 @@ body {
   vertical-align: -40%;
   content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAo0lEQVRYhe2VYQqAIAyFX9EVCrr/jfJHx6lfhtjMuVaL2AMRRLeP56aA68PaBGMFMFsCqELEgBJgFQgpQEjmyQJgBLBAwQkpALQg7tRAPkLpUFcJWNtD7W/KNTCDc1QCvQTrFQFEcgAHMAfQbMNUVOula0fL/taBqPxxOjlj7oADvPkbkjJ34IkuKFU+uc4BEFnL1aevgFt8USKnWpOoA5hfwQ6GPU4HtBOdYQAAAABJRU5ErkJggg==");
 }
->>>>>>> origin/feature/spec-cards
