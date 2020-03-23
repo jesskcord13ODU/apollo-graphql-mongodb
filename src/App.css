@@ -1,10 +1,20 @@
+body {
+  /* height: 100vh;
+  width: 100vw; */
+  /* margin: 0;
+  padding: 0; */
+}
+
 .App {
-  text-align: center;
+  /* text-align: center; */
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
 }
 
 .App-logo {
-  height: 6vmin;
-  pointer-events: none;
+  height: 2.5vmin;
 }
 
 .Modal-logo {
@@ -20,27 +30,16 @@
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
 }
 
 .FOUO-header {
-  position: fixed;
-  top: 0;
   width: 100%;
   background-color: #008AFF;
-  z-index: 999;
 }
 
 .FOUO-footer {
-  position: fixed;
-  bottom: 0;
   width: 100%;
   background-color: #008AFF;
-  z-index: 999;
 }
 
 .FOUO-text {
@@ -63,7 +62,8 @@
 }
 
 .Navbar-icon {
-  height: 2.5vmin;
+  height: 1.5em;
+  width: auto;
   padding-left: 15px;
 }
 
@@ -96,6 +96,7 @@
   background: #aaaaaa;
   width: 2px;
   height: 25px;
+  list-style: none;
 }
 
 .Navbar-line-padding {
@@ -103,7 +104,63 @@
   padding-right: 15px;
 }
 
+<<<<<<< HEAD
 .Logo-Style {
   height: 15vh;
   object-fit: contain;
 }
+=======
+.spec-card {
+  text-align: left;
+  margin: 1rem;
+  border-top-width: .25rem;
+  border-radius: .25rem;
+}
+
+.spec-card.red {
+  border-top-color: red;
+}
+
+.spec-card.blue {
+  border-top-color: blue;
+}
+
+.spec-card.white {
+  border-top-color: white;
+}
+
+.spec-card.none {
+  border-top-color: transparent;
+}
+
+.spec-create-button {
+  background-color: transparent;
+  margin: .25rem;
+  border: .25rem dashed #cccccc;
+  /* border-top-color: blue; */
+  /* border-top-width: .25rem; */
+  /* border-top-style: solid; */
+  border-radius: .25rem;
+}
+
+.spec-page nav {
+  text-align: center;
+}
+
+.user-scroll {
+  overflow-y: auto;
+}
+
+.tmp-fix {
+  padding-top: 100px;
+}
+
+.no-lst {
+  list-style: none;
+}
+
+.thread-button::after {
+  vertical-align: -40%;
+  content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAo0lEQVRYhe2VYQqAIAyFX9EVCrr/jfJHx6lfhtjMuVaL2AMRRLeP56aA68PaBGMFMFsCqELEgBJgFQgpQEjmyQJgBLBAwQkpALQg7tRAPkLpUFcJWNtD7W/KNTCDc1QCvQTrFQFEcgAHMAfQbMNUVOula0fL/taBqPxxOjlj7oADvPkbkjJ34IkuKFU+uc4BEFnL1aevgFt8USKnWpOoA5hfwQ6GPU4HtBOdYQAAAABJRU5ErkJggg==");
+}
+>>>>>>> origin/feature/spec-cards

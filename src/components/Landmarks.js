@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from './Navbar';
+import { NavbarComp } from './Navbar';
 
 const Header = () => {
     return (
@@ -7,7 +7,7 @@ const Header = () => {
             <div className="FOUO-text">
                 FOUO - For Official Use Only
             </div>
-            <Navbar />
+            <NavbarComp />
         </div>
     )
 }
