@@ -96,7 +96,34 @@ const mission = {
   }]
 };
 
+/**
+ * Route Object
+ * 
+ * @param {Array} path - Holds paths for components
+ * @param {React.Element} component - Holds component for paths
+ * @param {String} name - Text to be displayed
+ */
+const routes =[
+  {id: 0, path: ['/login','/'], name: "Login", component: <Login />},
+  {id: 1, path: ['/mission'], name: "Mission", component: <Mission />},
+  {id: 2, path: ['/specifications'], name: "Specifications", component: <Login />}
+]
+
+const initialState = {
+  user: "",
+  mission: "",
+}
+
 function App() {
+  console.log(Routing);
+  /*return (
+    <div className={"App Main"}>
+      <GlobalStore stateI={initialState}>
+        <Header />
+        <Routing routes={routes}/>
+        <Footer />
+      </GlobalStore>
+    </div>*/
     const [Mission, setMission] = useState();
 
     useEffect(() => {

@@ -104,6 +104,10 @@ body {
   padding-right: 15px;
 }
 
+.Logo-Style {
+  height: 15vh;
+  object-fit: contain;
+}
 .spec-card {
   text-align: left;
   margin: 1rem;
