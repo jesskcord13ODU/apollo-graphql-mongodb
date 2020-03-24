@@ -5,6 +5,6 @@ export const MissionSpecification = ({ mission }) => {
     const [Specs, setSpecs] = useState();
 
     return (
-        <>{ Speces }</>
+        <>{ Specs }</>
     );
 }
