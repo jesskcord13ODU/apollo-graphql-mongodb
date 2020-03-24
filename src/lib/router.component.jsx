@@ -109,14 +109,14 @@ export const Router = ({ routesArr, children }) => {
 
     if (ActiveComp === undefined) {
         return (
-            <div className={"container"}>
+            <div className={"container h-100"}>
                 { children }
                 <p>Link not Found!</p>
             </div>
         );
     } else {
         return (
-            <div className={"container"}>
+            <div className={"container h-100"}>
                 { children }
                 { ActiveComp }
             </div>

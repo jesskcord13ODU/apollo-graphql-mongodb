@@ -128,7 +128,7 @@ export default function App() {
                 <Container className={"align-self-center h-100"} >
                     <Row className={"align-items-center h-100"}>
                         <Col></Col>
-                        <Col xs={"10"}>
+                        <Col xs={"10"} className={"h-100"}>
                             <Routing routes={routes}></Routing>
                         </Col>
                         <Col></Col>

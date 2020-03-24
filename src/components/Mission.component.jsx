@@ -16,7 +16,7 @@ export const Mission = () => {
         fetch(`http://${process.env.REACT_APP_HOST}/retrieveMissions`)
             .then(raw => raw.json())
             .then(result => setMission(result[0]));
-    }, [Mission]);
+    }, []);
 
     // TODO: [MEI-46] Move render props out to state from new mission loaded
     return (
