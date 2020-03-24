@@ -89,6 +89,16 @@
   text-align: center;
 }
 
+/* .login {
+  text-align: center;
+  height: 50%;
+  width: 50%;
+  min-width: 50%;
+  max-width: 50%;
+  min-height: 50%;
+  max-height: 50%;
+} */
+
 .Login-padding {
   padding: 12px;
 }
@@ -144,6 +154,10 @@
   padding-right: 15px;
 }
 
+.Logo-Style {
+  height: 15vh;
+  object-fit: contain;
+}
 .spec-card {
   text-align: left;
   margin: 1rem;
@@ -201,4 +215,9 @@
 .thread-button::after {
   vertical-align: -40%;
   content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAo0lEQVRYhe2VYQqAIAyFX9EVCrr/jfJHx6lfhtjMuVaL2AMRRLeP56aA68PaBGMFMFsCqELEgBJgFQgpQEjmyQJgBLBAwQkpALQg7tRAPkLpUFcJWNtD7W/KNTCDc1QCvQTrFQFEcgAHMAfQbMNUVOula0fL/taBqPxxOjlj7oADvPkbkjJ34IkuKFU+uc4BEFnL1aevgFt8USKnWpOoA5hfwQ6GPU4HtBOdYQAAAABJRU5ErkJggg==");
+}
+
+.center-modal-header > h5 {
+  margin-left: auto;
+  padding-left: 1em; /* Comes from 1em padding on close button */
 }

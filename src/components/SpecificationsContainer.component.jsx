@@ -28,7 +28,7 @@ export const SpecsContainer = ({ specifications, specSelected }) => {
     }
 
     return (
-        <div>
+        <div className={"h-100 w-100"}>
             <nav>{specifications.map((ele, i) => 
                 <SpecificationTab tabChange={handleChange}
                                 name={ele.category}

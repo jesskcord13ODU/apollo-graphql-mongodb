@@ -1,9 +1,16 @@
-import React, { useEffect } from 'react';
-import {Header, Footer} from './components/Landmarks';
-import Login from "./components/Login.js"
-import {SpecList} from "./components/SpecList";
-import './App.css';
+import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
+
+import { Routing } from './lib/composed.component.jsx';
+import { GlobalStore } from './lib/store.component.jsx';
+
+
+import { Header, Footer } from './components/Landmarks';
+import { Login } from "./components/Login.js";
+import { Mission } from './components/Mission.component.jsx';
+
+
+import './App.css';
 import { SpecsContainer } from './components/SpecificationsContainer.component.jsx';
 
 const mission = {
@@ -96,21 +103,45 @@ const mission = {
   }]
 };
 
-function App() {
-  return (
-    <Container className={"app"}>
-        <Header />
-        <main className={"page"}>
-            <SpecsContainer specifications={mission.specificationsT}/>
-        </main>
-        <Footer />
-    </Container>
-  );
+/**
+ * Route Object
+ * 
+ * @param {Array} path - Holds paths for components
+ * @param {React.Element} component - Holds component for paths
+ * @param {String} name - Text to be displayed
+ */
+const routes =[
+  {id: 0, path: ['/login','/'], name: "Login", component: <Login />},
+  {id: 1, path: ['/mission'], name: "Mission", component: <Mission />},
+//   {id: 2, path: ['/specifications'], name: "Specifications", component: <Login />}
+]
+
+const initialState = {
+  user: "",
+  mission: "",
 }
 
-export default App;
+export default function App() {
+    // TODO: [MEI-45] Simplify App main div soup
+    return (
+        <GlobalStore stateI={initialState}>
+            <Container className={"app"}>
+                <Header />
+                <Routing routes={routes}></Routing>
+                <Footer />
+            </Container>
+        </GlobalStore>
+    );
+}
 
-//Look into React-Router for page navigation
-//Navbar shows differently depending on page (Login / All Projects / In Project)
-
-//      <Login />
+// function App() {
+//     return (
+//       <Container className={"app"}>
+//           <Header />
+//           <main className={"page"}>
+//               <SpecsContainer specifications={mission.specificationsT}/>
+//           </main>
+//           <Footer />
+//       </Container>
+//     );
+//   }
