@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {SpecCard} from './SpecCard';
 import { Card, CardHeader, CardBody, Col, InputGroup,
-         InputGroupAddon, Button, Input, ListGroup, Tooltip } from 'reactstrap';
+         InputGroupAddon, Button, Input, ListGroup, Tooltip, Container } from 'reactstrap';
 
 const NewSpecButton = () => {
     const [open, setOpen] = useState(false);
@@ -26,22 +26,24 @@ const NewSpecButton = () => {
 export const SpecList = ({ specs }) => {
 
     return (
-        <Card className={"card bg-light spec-list container"}>
+        <Card className={"h-100 w-100 bg-light"}>
             <CardHeader>
-                <Col className={"d-flex justify-content-start"}>
-                    <h3>Specifications</h3>
-                </Col>
-                <Col className={"d-flex justify-content-end"}>
-                    <InputGroup mb={"3"}>
-                        <Input type={"text"} className={"form-control"} placeholder={"Test"}/>
-                        <InputGroupAddon addonType={"append"}>
-                            <Button color={"secondary"}>Filter</Button>
-                        </InputGroupAddon>
-                    </InputGroup>
-                </Col>
+                <Container>
+                    <Col className={"d-flex justify-content-start"}>
+                        <h3>Specifications</h3>
+                    </Col>
+                    <Col className={"d-flex justify-content-end"}>
+                        <InputGroup mb={"3"}>
+                            <Input type={"text"} className={"form-control"} placeholder={"Test"}/>
+                            <InputGroupAddon addonType={"append"}>
+                                <Button color={"secondary"}>Filter</Button>
+                            </InputGroupAddon>
+                        </InputGroup>
+                    </Col>
+                </Container>
             </CardHeader>
-            <CardBody>
-                <div>
+            <CardBody className={"spec-list h-100 w-100"}>
+                <div className={"h-100 w-100 overflow-auto"}>
                     {   
                         specs !== undefined ? specs.map((ele, i) => 
                                 <SpecCard iconImage={ele.iconImage}

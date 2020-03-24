@@ -9,7 +9,9 @@ import { Header, Footer } from './components/Landmarks';
 import { Login } from "./components/Login.js";
 import { Mission } from './components/Mission.component.jsx';
 
+
 import './App.css';
+import { SpecsContainer } from './components/SpecificationsContainer.component.jsx';
 
 const mission = {
     missionId: "JCAG",
@@ -123,19 +125,23 @@ export default function App() {
     // TODO: [MEI-45] Simplify App main div soup
     return (
         <GlobalStore stateI={initialState}>
-            <Container fluid className={"m-0 App Main d-flex flex-column align-items-stretch"}>
-                <Header className={"align-self-start"}/>
-                <Container className={"align-self-center h-100"} >
-                    <Row className={"align-items-center h-100"}>
-                        <Col></Col>
-                        <Col xs={"10"}>
-                            <Routing routes={routes}></Routing>
-                        </Col>
-                        <Col></Col>
-                    </Row>
-                </Container>
-                <Footer className={"align-self-end"}/>
+            <Container className={"app"}>
+                <Header />
+                <Routing routes={routes}></Routing>
+                <Footer />
             </Container>
         </GlobalStore>
     );
 }
+
+// function App() {
+//     return (
+//       <Container className={"app"}>
+//           <Header />
+//           <main className={"page"}>
+//               <SpecsContainer specifications={mission.specificationsT}/>
+//           </main>
+//           <Footer />
+//       </Container>
+//     );
+//   }

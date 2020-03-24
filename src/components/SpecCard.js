@@ -1,5 +1,6 @@
 import React, { useState} from 'react';
-import { Card, CardBody, Container, Row, Col, Modal, ModalBody} from 'reactstrap';
+import { Card, CardBody, Container, Row, Col, Modal, ModalBody, ModalHeader, Form, FormGroup, FormText, Label, Input, Button, FormFeedback} from 'reactstrap';
+import { CommentList } from './CommentList';
 
 
 
@@ -12,10 +13,77 @@ export const SpecCard = ({ iconImage, bodyImage, title, description, color, orde
     //--Child Components--//
 
     const EditModal = () => {
+        
+        const titleInvalid = () => {
+            return false;
+        }
+
+        const submitForm = () => {
+            let form = document.querySelector("form");
+            let formData = new FormData(form);
+            let formJson = {};
+            for (const [key, value] of formData.entries()) {
+                formJson[key] = value;
+            }
+            console.log(formJson);
+            toggleEditModal();
+        }
+
+        const fileUpload = (input) => {
+            // if (input.files && input.files[0]) {
+
+            //     let reader = new FileReader();
+            //     reader.onload = (e) => {
+            //         document.getElementById("bodyImage").setAttribute("src", e.target.result);
+            //     };
+
+            //     reader.readAsDataURL(input.files[0]);
+            // }
+        }
+
         return (
-            <Modal isOpen={modal} toggle={toggleEditModal}>
+            <Modal className={"edit-modal"} isOpen={modal} toggle={toggleEditModal}>
+                <ModalHeader>
+                    Edit Specification: {title}
+                </ModalHeader>
                 <ModalBody>
-                   Card clicked: {title} 
+                    <Container>
+                        <Row>
+                            <Col xs={"8"}>
+                                <Form>
+                                    <FormGroup>
+                                        <Label for={"specTitle"}>Title</Label>
+                                        <Input invalid={titleInvalid()} type={"text"} name={"title"} id={"specTitle"} defaultValue={title}/>
+                                        <FormFeedback invalid>TODO: invalid text here</FormFeedback>
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <Label for={"specDesc"}>Description</Label>
+                                        <Input type={"text"} name={"description"} id={"specDesc"} defaultValue={description}/>
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <Label for={"bannerColor"}>Banner Color</Label>
+                                        <Input type={"color"} name={"color"} id={"bannerColor"}/>
+                                        <FormText color="muted">
+                                            Click the above to select a color.
+                                        </FormText>
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <Label for="exampleFile">Image</Label>
+                                        <img id={"bodyImage"} src={require(`../img/${bodyImage}`)} className={"img-fluid img-thumbnail"} alt={"Body"}/>
+                                        <Input type={"file"} name={"file"} id={"exampleFile"} onChange={fileUpload} />
+                                        <FormText color={"muted"}>
+                                            TODO: This is some placeholder block-level help text for the above input.
+                                            Add a message here regarding image size, file size, type, etc.
+                                        </FormText>
+                                    </FormGroup>
+                                    <Button onClick={submitForm}>Submit</Button>
+                                </Form>
+                            </Col>
+                            <Col xs={"4"}>
+                                <CommentList />
+                            </Col>
+                        </Row>
+                    </Container>
                 </ModalBody>
             </Modal>
         );
