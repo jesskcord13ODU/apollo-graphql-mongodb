@@ -28,18 +28,18 @@ export const SpecsContainer = ({ specifications, specSelected }) => {
     }
 
     return (
-        <div className={"spec-page"}>
+        <div>
             <nav>{specifications.map((ele, i) => 
                 <SpecificationTab tabChange={handleChange}
                                 name={ele.category}
                                 key={i}/>)}
                 <SpecificationTab name={"+"} tabChange={addTab} />
             </nav>
-            <Card className={"spec-page"} role={"section"} aria-label={"specifications"}>
-                <CardBody>
-                    <Row>
-                        <Col xs={"8"}>
-                            <article title={currTab}>
+            <Card className={"h-100 w-100"} role={"section"} aria-label={"specifications"}>
+                <CardBody className={"h-100 w-100"}>
+                    <Row className={"h-100 w-100"}>
+                        <Col className={"h-100 w-100"} xs={"8"}>
+                            <article className={"h-100 w-100"} title={currTab}>
                                 {console.log(spec)}
                                 <SpecList specs={spec.specEntries} />
                             </article>

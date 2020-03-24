@@ -98,20 +98,12 @@ const mission = {
 
 function App() {
   return (
-    <Container fluid className={"m-0 App Main d-flex flex-column align-items-stretch"}>
-      <Header className={"align-self-start"}/>
-      <Container fluid className={"align-self-center h-100"} >
-        <Row className={"align-items-center h-100"}>
-            <Col></Col>
-            <Col xs={"10"}>
-                <main>
-                  <SpecsContainer specifications={mission.specificationsT}/>
-                </main>
-            </Col>
-            <Col></Col>
-        </Row>
-      </Container>
-      <Footer className={"align-self-end"}/>
+    <Container className={"app"}>
+        <Header />
+        <main className={"page"}>
+            <SpecsContainer specifications={mission.specificationsT}/>
+        </main>
+        <Footer />
     </Container>
   );
 }

@@ -1,16 +1,62 @@
-body {
-  /* height: 100vh;
-  width: 100vw; */
-  /* margin: 0;
-  padding: 0; */
-}
-
-.App {
-  /* text-align: center; */
+#root {
+  position: absolute;
   height: 100vh;
   width: 100vw;
   padding: 0;
   margin: 0;
+  overflow: hidden;
+}
+
+.app {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+
+  background-image: url(/static/media/bg.f364e66f.png);
+  background-color: #282c34;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.page {
+  height: 75%;
+  width: 75%;
+
+  min-width: 75%;
+  max-width: 75%;
+  min-height: 75%;
+  max-height: 75%;
+
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  align-self: center;
+}
+
+.page > * {
+  width: 100%;
+  height: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+}
+
+.page nav {
+  text-align: center;
 }
 
 .App-logo {
@@ -24,22 +70,16 @@ body {
   text-align: center;
 }
 
-.Main {
-  background-image: url('./img/bg.png');
-  background-color: #282c34;
-  background-size: cover;
-  background-repeat: no-repeat;
-  min-height: 100vh;
-}
-
 .FOUO-header {
   width: 100%;
   background-color: #008AFF;
+  align-self: flex-start;
 }
 
 .FOUO-footer {
   width: 100%;
   background-color: #008AFF;
+  align-self: flex-end;
 }
 
 .FOUO-text {
@@ -129,16 +169,21 @@ body {
 
 .spec-create-button {
   background-color: transparent;
-  margin: .25rem;
+  margin: 1rem;
   border: .25rem dashed #cccccc;
-  /* border-top-color: blue; */
-  /* border-top-width: .25rem; */
-  /* border-top-style: solid; */
   border-radius: .25rem;
 }
 
-.spec-page nav {
-  text-align: center;
+.spec-list {
+  overflow: auto;
+}
+
+.edit-modal {
+  min-width: 60vw;
+}
+
+.comment-list {
+  overflow: auto; 
 }
 
 .user-scroll {
