@@ -8,6 +8,11 @@ import metrics from '../img/metricBuilder.png';
 import missionD from '../img/missionDesigner.png';
 import threadB from '../img/threadBuilder.png';
 
+import knowBase from '../img/knowledgeBase.png';
+import metrics from '../img/metricBuilder.png';
+import missionD from '../img/missionDesigner.png';
+import threadB from '../img/threadBuilder.png';
+
 export const Mission = () => {
     const [{ Mission }, setMission] = useCustomContext('global');
     const [state, setState] = useCustomContext('global');

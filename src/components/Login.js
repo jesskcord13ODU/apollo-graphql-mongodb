@@ -7,7 +7,7 @@ import { Card, CardHeader, CardBody, Row, Col } from 'reactstrap';
 
 export const Login = () => {
     return (
-        <Card className="shadow">
+        <Card className="login shadow">
             <CardHeader className={"Login-padding"}>
                 <img src={logo} className="App-logo" alt="logo" />
                 <h5 className="font-weight-bold">

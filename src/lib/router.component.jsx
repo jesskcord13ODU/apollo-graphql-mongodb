@@ -116,7 +116,7 @@ export const Router = ({ routesArr, children }) => {
         );
     } else {
         return (
-            <div className={"container h-100"}>
+            <div className={"page"}>
                 { children }
                 { ActiveComp }
             </div>
