@@ -1,5 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import logo from '../img/museLogo.png';
+
+import { Button, Modal, ModalHeader, ModalBody, Media, 
+         FormGroup, Label, Input } from 'reactstrap';
+import { Link } from '../lib/router.component.jsx';
 
 //This is the old state use for hooks that ended up not working for this modal,
 //but I'd like to keep this for future reference
@@ -38,13 +42,39 @@ import logo from '../img/museLogo.png';
  *  Interestingly, if you spawn one then use it React cannot clean up the left behind element.
  */
 export const LoginButton = () => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleOpen = () => setIsOpen(prev => !prev);
+
     return (
-        <>
-            <button type="button" className="btn btn-primary col-6" data-toggle="modal" data-target="#LoginModal">
+        <main>
+            <Button xs={"6"} color={"primary"} onClick={toggleOpen}>
                 Log In
-            </button>
-            <LoginModal />
-        </>
+            </Button>
+            <Modal isOpen={isOpen} 
+                   toggle={toggleOpen}
+                   centered={true}>
+                <ModalHeader toggle={toggleOpen} 
+                             className={"center-modal-header"}>
+                    <img src={logo} className={"Modal-logo"} alt={"logo"} />
+                </ModalHeader>
+                <ModalBody>
+                    <FormGroup>
+                        <Label for={"emailInput"}>Username</Label>
+                        <Input type={"email"} 
+                            id={"emailInput"}
+                            placeholder={"Enter Username..."} />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for={"passwdInput"}>Password</Label>
+                        <Input type={"password"}
+                            id={"passwdInput"}
+                            placeholder={"Enter password..."} />
+                    </FormGroup>
+                    <Link name={"Submit"} url={"/mission"} />
+                </ModalBody>
+            </Modal>
+        </main>
     )
 }
 
@@ -75,3 +105,65 @@ const LoginModal = () => {
         </div>
     )
 }
+
+/* <nav className="navbar navbar-expand-lg navbar-light bg-light shadow">
+            <a className="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span className="navbar-toggler-icon" />
+            </a>
+            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a className="dropdown-item" href="#">Action</a>
+                <a className="dropdown-item" href="#">Another action</a>
+                <div className="dropdown-divider"></div>
+                <a className="dropdown-item" href="#">Something else here</a>
+            </div>
+            <a className="navbar-brand" href="#">
+                <img src={logo} style={{height: '2.5vmin'}} alt="logo" />
+            </a>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+            </button>
+
+            <div className ="Navbar-line" />
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul className="navbar-nav mr-auto">
+                <li className="nav-item active">
+                    <a href="#">
+                        <img src={designerIcon} className="Navbar-icon" alt="Mission Designer" />
+                    </a>
+                </li>
+                <li className="nav-item active">
+                    <a href="#">
+                        <img src={threadBuilderIcon} className="Navbar-icon" alt="Thread Builder" />
+                    </a>
+                </li>
+                <li className="nav-item active">
+                    <a href="#">
+                        <img src={metricIcon} className="Navbar-icon" alt="Metric Builder" />
+                    </a>
+                </li>
+                <li className="nav-item active">
+                    <a href="#">
+                        <img src={knowledgeIcon} className="Navbar-icon" alt="Knowledge Base" />
+                    </a>
+                </li>
+                </ul>
+                <div className="dropdown Navbar-line-padding">
+                    <button className="btn btn-secondary  btn-sm dropdown-toggle Navbar-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Thread Name <img src={missionThreadIcon} style={{height: '2vmin'}} />
+                    </button>
+                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a className="dropdown-item" href="#">Action</a>
+                        <a className="dropdown-item" href="#">Another action</a>
+                        <a className="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+                <div className ="Navbar-line" />
+                <div className="Button-padding"/>
+                <div className="User-circle-small">
+                    <img src={userIcon} className="User-img-round" alt="User Icon" />
+                </div>
+                <a href="#">
+                    <img src={notificationIcon} className="Navbar-icon" alt="Notifications" />
+                </a>
+            </div>
+    </nav>*/

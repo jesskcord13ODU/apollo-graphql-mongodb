@@ -1,10 +1,66 @@
-.App {
+#root {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.app {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+
+  background-image: url(/static/media/bg.f364e66f.png);
+  background-color: #282c34;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.page {
+  height: 75%;
+  width: 75%;
+
+  min-width: 75%;
+  max-width: 75%;
+  min-height: 75%;
+  max-height: 75%;
+
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  align-self: center;
+}
+
+.page > * {
+  width: 100%;
+  height: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+}
+
+.page nav {
   text-align: center;
 }
 
 .App-logo {
-  height: 6vmin;
-  pointer-events: none;
+  height: 2.5vmin;
 }
 
 .Modal-logo {
@@ -14,33 +70,16 @@
   text-align: center;
 }
 
-.Main {
-  background-image: url('./img/bg.png');
-  background-color: #282c34;
-  background-size: cover;
-  background-repeat: no-repeat;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-}
-
 .FOUO-header {
-  position: fixed;
-  top: 0;
   width: 100%;
   background-color: #008AFF;
-  z-index: 999;
+  align-self: flex-start;
 }
 
 .FOUO-footer {
-  position: fixed;
-  bottom: 0;
   width: 100%;
   background-color: #008AFF;
-  z-index: 999;
+  align-self: flex-end;
 }
 
 .FOUO-text {
@@ -49,6 +88,16 @@
   font-size: calc(5px + 1vmin);
   text-align: center;
 }
+
+/* .login {
+  text-align: center;
+  height: 50%;
+  width: 50%;
+  min-width: 50%;
+  max-width: 50%;
+  min-height: 50%;
+  max-height: 50%;
+} */
 
 .Login-padding {
   padding: 12px;
@@ -63,7 +112,8 @@
 }
 
 .Navbar-icon {
-  height: 2.5vmin;
+  height: 1.5em;
+  width: auto;
   padding-left: 15px;
 }
 
@@ -96,9 +146,96 @@
   background: #aaaaaa;
   width: 2px;
   height: 25px;
+  list-style: none;
 }
 
 .Navbar-line-padding {
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.Logo-Style {
+  height: 15vh;
+  object-fit: contain;
+}
+.spec-card {
+  text-align: left;
+  margin: 1rem;
+  border-top-width: .25rem;
+  border-radius: .25rem;
+}
+
+.spec-card.red {
+  border-top-color: red;
+}
+
+.spec-card.blue {
+  border-top-color: blue;
+}
+
+.spec-card.white {
+  border-top-color: white;
+}
+
+.spec-card.none {
+  border-top-color: transparent;
+}
+
+.spec-create-button {
+  background-color: transparent;
+  margin: 1rem;
+  border: .25rem dashed #cccccc;
+  border-radius: .25rem;
+}
+
+.spec-list {
+  overflow: auto;
+}
+
+.edit-modal {
+  min-width: 60vw;
+}
+
+.comment-list {
+  overflow: auto; 
+}
+
+.user-scroll {
+  overflow-y: auto;
+}
+
+.tmp-fix {
+  padding-top: 100px;
+}
+
+.no-lst {
+  list-style: none;
+}
+
+.thread-button::after {
+  vertical-align: -40%;
+  content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAo0lEQVRYhe2VYQqAIAyFX9EVCrr/jfJHx6lfhtjMuVaL2AMRRLeP56aA68PaBGMFMFsCqELEgBJgFQgpQEjmyQJgBLBAwQkpALQg7tRAPkLpUFcJWNtD7W/KNTCDc1QCvQTrFQFEcgAHMAfQbMNUVOula0fL/taBqPxxOjlj7oADvPkbkjJ34IkuKFU+uc4BEFnL1aevgFt8USKnWpOoA5hfwQ6GPU4HtBOdYQAAAABJRU5ErkJggg==");
+}
+
+.center-modal-header > h5 {
+  margin-left: auto;
+  padding-left: 1em; /* Comes from 1em padding on close button */
+}
+
+.cust-card-title {
+  font-size: large;
+  font-weight: bold;
+}
+
+.cust-card-title-sub {
+  font-size: small;
+  margin-left: 2em
+}
+
+.mission-img-link {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.25em;
+  box-shadow: 0 0.25em 0.25em rgba(0,0,0,0.25);
 }
