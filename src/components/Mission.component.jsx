@@ -20,12 +20,6 @@ export const Mission = () => {
     useEffect(() => {
         fetch(`http://${process.env.REACT_APP_HOST}/retrieveMissions`)
             .then(raw => raw.json())
-<<<<<<< HEAD
-            .then(result => setMission(result[0]));
-    }, [currPage]);
-
-    const changePage = page => setCurrPage(page);
-=======
             .then(result => setMission(result[0]))
             .catch(error => {
                 setMission({
@@ -119,7 +113,6 @@ export const Mission = () => {
                 });
             });
     }, []);
->>>>>>> 4cba596c75f0ac40924506937fdb7edc11e42d7f
 
     // TODO: [MEI-46] Move render props out to state from new mission loaded
     return (
