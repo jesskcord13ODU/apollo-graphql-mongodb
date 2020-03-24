@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import { SpecsContainer } from './SpecificationsContainer.component';
 import { Card , CardTitle, CardText, Container, Row, Col, CardDeck, CardHeader, CardImg } from 'reactstrap';
 import { useCustomContext } from '../lib/mgmt.component.jsx';
-// import { Link } from './router.component.jsx';
 
 import knowBase from '../img/knowledgeBase.png';
 import metrics from '../img/metricBuilder.png';
@@ -10,12 +9,21 @@ import missionD from '../img/missionDesigner.png';
 import threadB from '../img/threadBuilder.png';
 
 export const Mission = () => {
-    const [Mission, setMission] = useState();
+    const [{ Mission }, setMission] = useCustomContext('global');
+    const [state, setState] = useCustomContext('global');
 
     useEffect(() => {
         fetch(`http://${process.env.REACT_APP_HOST}/retrieveMissions`)
             .then(raw => raw.json())
-            .then(result => setMission(result[0]));
+            .then(result => {
+                console.log(result[0]);
+                console.log(setMission);
+                setMission({
+                    type: 'setValue',
+                    Mission: result[0]
+                });
+                console.log(state);
+            });
     }, []);
 
     // TODO: [MEI-46] Move render props out to state from new mission loaded
@@ -27,7 +35,7 @@ export const Mission = () => {
                 <Col xs={"6"}>
                     <Card body>
                         <CardTitle className={"cust-card-title"}>
-                            Project: {Mission !== undefined ? Mission.missionId : "TBD"}
+                            <b>Project</b>: {Mission !== undefined ? Mission.missionId : "TBD"}
                         </CardTitle>
                         <CardText className={"cust-card-title-sub"}>
                             <b>Project Description</b>: {Mission !== undefined ?

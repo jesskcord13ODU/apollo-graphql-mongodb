@@ -11,7 +11,7 @@ export const Login = () => {
             <CardHeader className={"Login-padding"}>
                 <img src={logo} className="App-logo" alt="logo" />
                 <h5 className="font-weight-bold">
-                    Mission Engineering & Integration
+                    Mission Engineering &amp; Integration
                 </h5>
             </CardHeader>
             <CardBody className="text-center">
