@@ -1,5 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import logo from '../img/museLogo.png';
+
+import { Button, Modal, ModalHeader, ModalBody, Media, 
+         FormGroup, Label, Input } from 'reactstrap';
+import { Link } from '../lib/router.component.jsx';
 
 //This is the old state use for hooks that ended up not working for this modal,
 //but I'd like to keep this for future reference
@@ -38,13 +42,39 @@ import logo from '../img/museLogo.png';
  *  Interestingly, if you spawn one then use it React cannot clean up the left behind element.
  */
 export const LoginButton = () => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleOpen = () => setIsOpen(prev => !prev);
+
     return (
-        <>
-            <button type="button" className="btn btn-primary col-6" data-toggle="modal" data-target="#LoginModal">
+        <main>
+            <Button xs={"6"} color={"primary"} onClick={toggleOpen}>
                 Log In
-            </button>
-            <LoginModal />
-        </>
+            </Button>
+            <Modal isOpen={isOpen} 
+                   toggle={toggleOpen}
+                   centered={true}>
+                <ModalHeader toggle={toggleOpen} 
+                             className={"center-modal-header"}>
+                    <img src={logo} className={"Modal-logo"} alt={"logo"} />
+                </ModalHeader>
+                <ModalBody>
+                    <FormGroup>
+                        <Label for={"emailInput"}>Username</Label>
+                        <Input type={"email"} 
+                            id={"emailInput"}
+                            placeholder={"Enter Username..."} />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for={"passwdInput"}>Password</Label>
+                        <Input type={"password"}
+                            id={"passwdInput"}
+                            placeholder={"Enter password..."} />
+                    </FormGroup>
+                    <Link name={"Submit"} url={"/mission"} />
+                </ModalBody>
+            </Modal>
+        </main>
     )
 }
 

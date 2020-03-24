@@ -5,7 +5,7 @@ import logo from '../img/museLogo.png';
 import '../App.css';
 import { Card, CardHeader, CardBody, Row, Col } from 'reactstrap';
 
-const Login = () => {
+export const Login = () => {
     return (
         <Card className="shadow">
             <CardHeader className={"Login-padding"}>
@@ -28,5 +28,3 @@ const Login = () => {
         </Card>
     );
 }
-
-export default Login

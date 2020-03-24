@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import {Header, Footer} from './components/Landmarks';
-import Login from "./components/Login.js"
-import {SpecList} from "./components/SpecList";
-import './App.css';
+import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import { SpecsContainer } from './components/SpecificationsContainer.component.jsx';
+
+import { Routing } from './lib/composed.component.jsx';
+import { GlobalStore } from './lib/store.component.jsx';
+
+
+import { Header, Footer } from './components/Landmarks';
+import { Login } from "./components/Login.js";
+import { Mission } from './components/Mission.component.jsx';
+
+import './App.css';
 
 const mission = {
     missionId: "JCAG",
@@ -106,7 +111,7 @@ const mission = {
 const routes =[
   {id: 0, path: ['/login','/'], name: "Login", component: <Login />},
   {id: 1, path: ['/mission'], name: "Mission", component: <Mission />},
-  {id: 2, path: ['/specifications'], name: "Specifications", component: <Login />}
+//   {id: 2, path: ['/specifications'], name: "Specifications", component: <Login />}
 ]
 
 const initialState = {
@@ -114,50 +119,23 @@ const initialState = {
   mission: "",
 }
 
-function App() {
-  console.log(Routing);
-  /*return (
-    <div className={"App Main"}>
-      <GlobalStore stateI={initialState}>
-        <Header />
-        <Routing routes={routes}/>
-        <Footer />
-      </GlobalStore>
-    </div>*/
-    const [Mission, setMission] = useState();
-
-    useEffect(() => {
-        fetch(`http://${process.env.REACT_APP_HOST}/retrieveMissions`)
-            .then(raw => raw.json())
-            .then(result => setMission(result[0]));
-    }, [])
-
+export default function App() {
+    // TODO: [MEI-45] Simplify App main div soup
     return (
-        <Container fluid className={"m-0 App Main d-flex flex-column align-items-stretch"}>
-        <Header className={"align-self-start"}/>
-        <Container className={"align-self-center h-100"} >
-            <Row className={"align-items-center h-100"}>
-                <Col></Col>
-                <Col xs={"10"}>
-                    <main>
-                        {Mission !== undefined ?
-                            <SpecsContainer specifications={Mission.specificationsT}/>
-                            :
-                            <h2>Loading</h2>
-                        }
-                    </main>
-                </Col>
-                <Col></Col>
-            </Row>
-        </Container>
-        <Footer className={"align-self-end"}/>
-        </Container>
+        <GlobalStore stateI={initialState}>
+            <Container fluid className={"m-0 App Main d-flex flex-column align-items-stretch"}>
+                <Header className={"align-self-start"}/>
+                <Container className={"align-self-center h-100"} >
+                    <Row className={"align-items-center h-100"}>
+                        <Col></Col>
+                        <Col xs={"10"}>
+                            <Routing routes={routes}></Routing>
+                        </Col>
+                        <Col></Col>
+                    </Row>
+                </Container>
+                <Footer className={"align-self-end"}/>
+            </Container>
+        </GlobalStore>
     );
 }
-
-export default App;
-
-//Look into React-Router for page navigation
-//Navbar shows differently depending on page (Login / All Projects / In Project)
-
-//      <Login />

@@ -1,10 +1,23 @@
-import React from 'react';
-import { Link } from './router.component.jsx';
+import React, {useEffect, useState} from 'react';
+import { SpecsContainer } from './SpecificationsContainer.component';
+// import { Link } from './router.component.jsx';
 
-const Mission = () => {
+export const Mission = () => {
+    const [Mission, setMission] = useState();
+
+    useEffect(() => {
+        fetch(`http://${process.env.REACT_APP_HOST}/retrieveMissions`)
+            .then(raw => raw.json())
+            .then(result => setMission(result[0]));
+    }, []);
+
     return (
-        <div>I'm a mission, look at me now!<br /><Link url={"/login"} name={"To login"}/></div>
+        <main>
+            {Mission !== undefined ?
+                <SpecsContainer specifications={Mission.specificationsT}/>
+                :
+                <h2>Loading</h2>
+            }
+        </main>
     )
 }
-
-export default Mission;

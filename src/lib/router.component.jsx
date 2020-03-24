@@ -23,7 +23,7 @@ export const Link = ({ url, name, linkClass}) => {
     }
 
     return (
-        <Button onClick={handleClick}>{name}</Button>
+        <Button color={"primary"} onClick={handleClick}>{name}</Button>
     );
 };
 
