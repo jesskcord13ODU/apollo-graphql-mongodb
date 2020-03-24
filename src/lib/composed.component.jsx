@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { RouterStore } from './store.component.jsx';
 import { Router } from './router.component.jsx';
 
-export const Routing = ({ initialState, routes, children }) => {
+export const Routing = ({ initialState, routes, Header, Footer, className, children }) => {
     const component = routes.findIndex(x => {
         const curr = window.location.pathname;
         if (x.path.indexOf(curr) !== -1) {
@@ -22,7 +22,7 @@ export const Routing = ({ initialState, routes, children }) => {
 
     return (
         <RouterStore initialState={ initState }>
-            <Router routesArr={ routes }>
+            <Router Header={Header} Footer={Footer} routesArr={ routes } className={className}>
                 { children }
             </Router>
         </RouterStore>

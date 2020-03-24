@@ -7,17 +7,22 @@ import { Card, CardHeader, CardBody, Row, Col } from 'reactstrap';
 
 export const Login = () => {
     return (
-        <Card className="login shadow">
-            <CardHeader className={"Login-padding"}>
-                <img src={logo} className="App-logo" alt="logo" />
-                <h5 className="font-weight-bold">
-                    Mission Engineering &amp; Integration
-                </h5>
+        <Card className="login modal-center shadow">
+            <CardHeader className={"Login-padding text-center"}>
+                <Row className="d-flex justify-content-center">
+                    <Col>
+                        <img src={logo} className="Login-logo Top-padding" alt="logo" />
+                        <h5 className="font-weight-bold Top-padding">
+                            Mission Engineering &amp; Integration
+                        </h5>
+                    </Col>
+                </Row>
             </CardHeader>
             <CardBody className="text-center">
                 <Row className="d-flex justify-content-center">
-                    <Col xs={"8"}>
+                    <Col>
                         <LoginButton />
+                        <div className={"Button-padding"}/>
                         <NewUserButton />
                     </Col>
                 </Row>

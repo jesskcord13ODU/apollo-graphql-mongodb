@@ -1,14 +1,12 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 
-import { Routing } from './lib/composed.component.jsx';
+import { Routing } from './lib/composed.component';
 import { GlobalStore } from './lib/store.component.jsx';
-
 
 import { Header, Footer } from './components/Landmarks';
 import { Login } from "./components/Login.js";
 import { Mission } from './components/Mission.component.jsx';
-
 
 import './App.css';
 import { SpecsContainer } from './components/SpecificationsContainer.component.jsx';
@@ -125,11 +123,7 @@ export default function App() {
     // TODO: [MEI-45] Simplify App main div soup
     return (
         <GlobalStore stateI={initialState}>
-            <Container className={"app"}>
-                <Header />
-                <Routing routes={routes}></Routing>
-                <Footer />
-            </Container>
+            <Routing className={"app"} Header={<Header/>} Footer={<Footer/>} routes={routes}></Routing>
         </GlobalStore>
     );
 }

@@ -10,7 +10,7 @@ import { Button } from 'reactstrap';
  * @param {String} props.name - Name of link
  * @param {String} props.linkClass - CSS class to style link with
  */
-export const Link = ({ url, name, linkClass}) => {
+export const Link = ({ url, name, className}) => {
     const [{ currPath }, setCurrPath] = useCustomContext("routing"); // Custom Hook for global context
     const handleClick = ev => {
         ev.preventDefault();
@@ -23,7 +23,7 @@ export const Link = ({ url, name, linkClass}) => {
     }
 
     return (
-        <Button color={"primary"} onClick={handleClick}>{name}</Button>
+        <Button className={className} color={"primary"} onClick={handleClick}>{name}</Button>
     );
 };
 
@@ -46,7 +46,7 @@ export const Link = ({ url, name, linkClass}) => {
  * @param {Array} RoutesArr - Stores the routes that the application can access
  * @param {Object} children - React default property that has children elements within JSX
  */
-export const Router = ({ routesArr, children }) => {
+export const Router = ({ routesArr, Header, Footer, className, children }) => {
     const [{ ActiveComp }, setComp] = useCustomContext("routing");
     const [{ currPath }, setPath] = useCustomContext("routing");
     const [{ id }, setId] = useCustomContext("routing");
@@ -109,16 +109,26 @@ export const Router = ({ routesArr, children }) => {
 
     if (ActiveComp === undefined) {
         return (
-            <div className={"container"}>
-                { children }
-                <p>Link not Found!</p>
+            <div className={className}>
+                {Header}
+                <div className={"container"}>
+                    { children }
+                    <p>Link not Found!</p>
+                </div>
+                {Footer}
             </div>
         );
     } else {
-        return (
-            <div className={"page"}>
-                { children }
-                { ActiveComp }
+        return (                
+            <div className={className}>
+                {Header}
+                <div className={"page"}>
+
+                    { children }
+                    { ActiveComp }
+
+                </div>                
+                {Footer}
             </div>
         );
     }
