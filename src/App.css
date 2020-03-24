@@ -166,3 +166,13 @@ body {
   margin-left: auto;
   padding-left: 1em; /* Comes from 1em padding on close button */
 }
+
+.cust-card-title {
+  font-size: large;
+  font-weight: bold;
+}
+
+.cust-card-title-sub {
+  font-size: small;
+  margin-left: 2em
+}
