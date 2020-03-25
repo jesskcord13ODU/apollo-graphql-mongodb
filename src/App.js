@@ -4,11 +4,9 @@ import { Container, Row, Col } from 'reactstrap';
 import { Routing } from './lib/composed.component.jsx';
 import { GlobalStore } from './lib/store.component.jsx';
 
-
 import { Header, Footer } from './components/Landmarks';
 import { Login } from "./components/Login.js";
 import { Mission } from './components/Mission.component.jsx';
-
 
 import './App.css';
 import { SpecsContainer } from './components/SpecificationsContainer.component.jsx';

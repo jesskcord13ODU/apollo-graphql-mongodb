@@ -5,6 +5,8 @@ import { Collapse, Navbar, NavbarToggler, NavbarBrand,
          DropdownToggle, DropdownMenu, DropdownItem,
          Media, Button } from 'reactstrap';
 
+import { useCustomContext } from '../lib/mgmt.component.jsx';
+
 //Nav Icons
 import designerIcon from '../img/icons/missionBuilder.png';
 import threadBuilderIcon from '../img/icons/threadBuilder.png';

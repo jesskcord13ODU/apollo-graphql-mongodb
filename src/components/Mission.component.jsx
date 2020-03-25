@@ -8,11 +8,6 @@ import metrics from '../img/metricBuilder.png';
 import missionD from '../img/missionDesigner.png';
 import threadB from '../img/threadBuilder.png';
 
-import knowBase from '../img/knowledgeBase.png';
-import metrics from '../img/metricBuilder.png';
-import missionD from '../img/missionDesigner.png';
-import threadB from '../img/threadBuilder.png';
-
 export const Mission = () => {
     const [{ Mission }, setMission] = useCustomContext('global');
     const [state, setState] = useCustomContext('global');
@@ -24,7 +19,7 @@ export const Mission = () => {
                 console.log(result[0]);
                 console.log(setMission);
                 setMission({
-                    type: 'setValue',
+                    type: 'setMission',
                     Mission: result[0]
                 });
                 console.log(state);
@@ -59,7 +54,7 @@ export const Mission = () => {
                     <CardDeck className={"dash-icons h-100"}>
                         <ImgLink name={"Mission Designer"}
                                   img={missionD}
-                                  link={"specification"} 
+                                  link={"/specifications"} 
                                   />
                         <ImgLink name={"Thread Builder"}
                                   img={threadB}
@@ -114,9 +109,17 @@ export const Mission = () => {
 
 const ImgLink = ({name, img, link}) => {
     const [{ currPath }, setCurrPath] = useCustomContext("routing"); // Custom Hook for global context
+    const handleClick = ev => {
+        // console.log(currPath) // To debug current path
+        window.history.pushState({}, undefined, link); // Purely stores current page with History Browswer API
+        setCurrPath({
+            type: 'changeRoute',
+            newPath: link
+        });
+    }
 
     return (
-        <Card>
+        <Card onClick={handleClick}>
             <CardHeader>{name}</CardHeader>
             <img
                 className={"mission-img-link"}
