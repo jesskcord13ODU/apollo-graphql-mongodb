@@ -111,12 +111,12 @@ const mission = {
 const routes =[
   {id: 0, path: ['/login','/'], name: "Login", component: <Login />},
   {id: 1, path: ['/mission'], name: "Mission", component: <Mission />},
-//   {id: 2, path: ['/specifications'], name: "Specifications", component: <Login />}
+  {id: 2, path: ['/specifications'], name: "Specifications", component: <SpecsContainer />}
 ]
 
 const initialState = {
   user: "",
-  mission: "",
+  Mission: {}
 }
 
 export default function App() {

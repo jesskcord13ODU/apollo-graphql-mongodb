@@ -43,6 +43,9 @@ export const GlobalStore = ({ stateI, children }) => {
 
     // Instead of switch-case as below, will check if it exist 
     const reducer = (state, action) => {
+        console.log(state);
+        console.log(action);
+        console.log(valMap);
         if (valMap.hasOwnProperty(action.type)) {
             return valMap[action.type](state, action);
         } else {
@@ -70,7 +73,7 @@ export const RouterStore = ({ stateI, children }) => {
     }
 
     const reducer = (state, action) => {
-        // console.log(action); // Debug the action being called upon state container
+        console.log(action); // Debug the action being called upon state container
         switch (action.type) {
             case 'changeRoute':
                 return {
