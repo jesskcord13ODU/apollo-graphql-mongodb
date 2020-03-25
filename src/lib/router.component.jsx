@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useCustomContext } from './mgmt.component.jsx';
-import { Button } from 'reactstrap';
+import { Button, CardHeader } from 'reactstrap';
 
 /**
  * This link componenet is set-up to integrate compatibility with the 
@@ -10,7 +10,7 @@ import { Button } from 'reactstrap';
  * @param {String} props.name - Name of link
  * @param {String} props.linkClass - CSS class to style link with
  */
-export const Link = ({ url, name, className}) => {
+export const Link = ({ url, name, className, children}) => {
     const [{ currPath }, setCurrPath] = useCustomContext("routing"); // Custom Hook for global context
     const handleClick = ev => {
         ev.preventDefault();
@@ -22,9 +22,18 @@ export const Link = ({ url, name, className}) => {
         });
     }
 
-    return (
-        <Button className={className} color={"primary"} onClick={handleClick}>{name}</Button>
-    );
+    console.log(children);
+    if (children === undefined) {
+        return (
+            <Button className={className} color={"primary"} onClick={handleClick}>{name}</Button>
+        );
+    } else {
+        return (
+            <div className={className} onClick={handleClick}>
+                {children}
+            </div>
+        );
+    } 
 };
 
 /**

@@ -111,7 +111,7 @@ const mission = {
 const routes =[
   {id: 0, path: ['/login','/'], name: "Login", component: <Login />},
   {id: 1, path: ['/mission'], name: "Mission", component: <Mission />},
-  {id: 2, path: ['/specifications'], name: "Specifications", component: <SpecsContainer />}
+  {id: 2, path: ['/specifications','/designer'], name: "Specifications", component: <SpecsContainer />}
 ]
 
 const initialState = {

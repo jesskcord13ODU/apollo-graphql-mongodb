@@ -1,10 +1,12 @@
 import React, { useState, useContext } from 'react'
 import logo from '../img/museLogo.png';
-import { RouterContext, useCustomContext } from '../lib/mgmt.component.jsx';
+import { useCustomContext } from '../lib/mgmt.component.jsx';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand,
-         Nav, NavItem, NavLink, Dropdown,
+         Nav, NavItem, Dropdown,
          DropdownToggle, DropdownMenu, DropdownItem,
          Media, Button } from 'reactstrap';
+import { isEmpty } from '../lib/utility';
+import { Link } from '../lib/router.component';
 
 //Nav Icons
 import designerIcon from '../img/icons/missionBuilder.png';
@@ -22,6 +24,7 @@ export const NavbarComp = () => {
     const [openThread, setThread] = useState(false);
     const [openMissionNav, setMissionNav] = useState(false);
     const [{currPath}, _] = useCustomContext("Router");
+    const [{Mission}, __] = useCustomContext("global");
 
     const toggleOpen = () => setOpen(prevStat => !prevStat);
     const toggleThread = () => setThread(prevState => !prevState);
@@ -51,9 +54,9 @@ export const NavbarComp = () => {
                                       onClick={toggleOpen}>Something Else Here</DropdownItem>
                     </DropdownMenu>
                 </Dropdown>
-                <NavbarBrand href="/" className={"mr-auto"}>
+                <Link url={!isEmpty(Mission) ? "/mission" : "/"} className={"mr-auto navbar-brand"}>
                     <Media src={logo} className={"App-logo"} alt="MUSE logo" />
-                </NavbarBrand>
+                </Link>
                 <NavbarToggler aria-controls={"navbarSupportedContent"}
                                aria-expanded={false} 
                                aria-label={"Toggle navigation"}
@@ -64,32 +67,32 @@ export const NavbarComp = () => {
                 <Collapse isOpen={openMissionNav} id="navbarSupportedContent" navbar={true}>
                     <Nav navbar className={"mr-auto"}>
                         <NavItem>
-                            <NavLink href={"/designer"}>
+                            <Link url={"/designer"} className={"nav-link"}>
                                 <Media src={designerIcon} 
                                     className={"Navbar-icon"}
                                     alt={"Mission Designer"}/>
-                            </NavLink>
+                            </Link>
                         </NavItem>
                         <NavItem>
-                            <NavLink href={"/threadBuilder"}>
+                            <Link url={"/threadBuilder"} className={"nav-link"}>
                                 <Media src={threadBuilderIcon}
                                     className={"Navbar-icon"}
                                     alt={"Mission Thread Builder"}/>
-                            </NavLink>
+                            </Link>
                         </NavItem>
                         <NavItem>
-                            <NavLink href={"/metricBuilder"}>
+                            <Link url={"/metricBuilder"} className={"nav-link"}>
                                 <Media src={metricIcon}
                                     className={"Navbar-icon"}
                                     alt={"Metric Builder"}/>
-                            </NavLink>
+                            </Link>
                         </NavItem>
                         <NavItem>
-                            <NavLink href={"/knowledgeBase"}>
+                            <Link url={"/knowledgeBase"} className={"nav-link"}>
                                 <Media src={knowledgeIcon}
                                     className={"Navbar-icon"}
                                     alt={"Knowledge Base"}/>
-                            </NavLink>
+                            </Link>
                         </NavItem>
                     </Nav>
                 </Collapse>
