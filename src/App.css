@@ -42,7 +42,7 @@
 
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow: hidden auto; /* TODO: [MEI-89] Evaluate need to hide overflows */
   align-self: center;
 }
 
@@ -63,8 +63,13 @@
   height: 2.5vmin;
 }
 
+.Login-logo {
+  height: 7vh;
+  object-fit: contain;
+}
+
 .Modal-logo {
-  height: 3vmin;
+  height: 3.5vmin;
   pointer-events: none;
   margin: auto;
   text-align: center;
@@ -89,26 +94,29 @@
   text-align: center;
 }
 
-/* .login {
-  text-align: center;
+.login {
   height: 50%;
   width: 50%;
-  min-width: 50%;
-  max-width: 50%;
-  min-height: 50%;
-  max-height: 50%;
-} */
+  min-width: 0%;
+  max-width: 100%;
+  min-height: 0%;
+  max-height: 100%;
+}
 
 .Login-padding {
   padding: 12px;
 }
 
 .Login-body {
-  font-size: calc(3px + 1vmin);
+  font-size: calc(3px + 1.5vmin);
 }
 
 .Button-padding {
   padding: 6px;
+}
+
+.Top-padding {
+  padding-top: 6px;
 }
 
 .Navbar-icon {
@@ -154,10 +162,6 @@
   padding-right: 15px;
 }
 
-.Logo-Style {
-  height: 15vh;
-  object-fit: contain;
-}
 .spec-card {
   text-align: left;
   margin: 1rem;
@@ -220,6 +224,19 @@
 .center-modal-header > h5 {
   margin-left: auto;
   padding-left: 1em; /* Comes from 1em padding on close button */
+}
+
+.center-modal-footer {
+  margin-left: 41%;
+}
+
+.modal-center {
+  width: fit-content;
+  height: fit-content;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .cust-card-title {
