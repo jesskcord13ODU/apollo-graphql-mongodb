@@ -58,7 +58,7 @@ export const SpecCard = ({ iconImage, bodyImage, title, description, color, orde
                                     </FormGroup>
                                     <FormGroup>
                                         <Label for={"specDesc"}>Description</Label>
-                                        <Input type={"text"} name={"description"} id={"specDesc"} defaultValue={description}/>
+                                        <Input type={"textarea"} rows={"3"} name={"description"} id={"specDesc"} defaultValue={description}/>
                                     </FormGroup>
                                     <FormGroup>
                                         <Label for={"bannerColor"}>Banner Color</Label>

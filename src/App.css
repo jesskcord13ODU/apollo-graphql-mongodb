@@ -219,8 +219,27 @@
 }
 
 .edit-modal {
+  height: 75vh;
+  width: 75vw;
+  min-width: 75vw;
   max-width: 75vw;
+  min-height: 75vh;
   max-height: 75vh;
+
+  overflow: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+}
+
+.edit-modal > * {
+  height: 100%;
+  padding-bottom: 1em;
+}
+
+.modal-body {
+  height: 100%;
   overflow: auto;
 }
 
