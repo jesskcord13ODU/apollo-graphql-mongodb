@@ -1,20 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { Card, CardBody, Row, Col} from 'reactstrap';
+import { Button, Card, CardBody, Row, Col, UncontrolledDropdown } from 'reactstrap';
 import { SpecList } from './SpecList';
 import { CommentList } from './CommentList';
+import { useCustomContext } from '../lib/mgmt.component';
+import { isEmpty } from '../lib/utility';
 
 // The props should eventually be expaned to what is necessary
-export const SpecsContainer = ({ specifications, specSelected }) => {
-    const [currTab, setTab] = useState(specSelected === undefined ? 
-                                            specifications[0].category :
-                                            specSelected);
-    const [spec, setSpec] = useState(specifications[0]);
+export const SpecsContainer = ({ specSelected }) => {
+    const [{Mission}, setMission] = useCustomContext('global');
+    const [state, setState] = useCustomContext('global');
+    const [currTab, setTab] = useState(specSelected === undefined ?
+                                        !isEmpty(Mission) ?
+                                          Mission.specificationsT[0].category :
+                                            "TBD" : specSelected);
+    const [spec, setSpec] = useState(!isEmpty(Mission) ?
+                                        Mission.specificationsT[0] :
+                                            {});
+    // useEffect will need to be adde
     useEffect(() => {
-        const ele = specifications.filter(ele => {
-            if (ele.category === currTab) {
-                return ele;
-            }
-        });
+        console.log(state);
+        const ele = !isEmpty(Mission) ?
+            Mission.specificationsT.filter(ele => {
+            if (ele.category === currTab) { return ele}})
+            :
+            [''];
+        console.log(ele[0]["category"]);
         setSpec(ele[0]);
     }, [currTab]);
 
@@ -30,10 +40,11 @@ export const SpecsContainer = ({ specifications, specSelected }) => {
 
     return (
         <div className={"h-100 w-100"}>
-            <nav>{specifications.map((ele, i) => 
+            <nav>{!isEmpty(Mission) ? 
+            Mission.specificationsT.map((ele, i) => 
                 <SpecificationTab tabChange={handleChange}
                                 name={ele.category}
-                                key={i}/>)}
+                                key={i}/>) : "Coming soon"}
                 <SpecificationTab name={"+"} tabChange={addTab} />
             </nav>
             <Card className={"h-100 w-100"} role={"section"} aria-label={"specifications"}>

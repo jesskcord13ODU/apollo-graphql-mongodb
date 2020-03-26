@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavbarComp } from './Navbar';
 
-const Header = () => {
+export const Header = () => {
     return (
         <div className="FOUO-header">
             <div className="FOUO-text">
@@ -12,7 +12,7 @@ const Header = () => {
     )
 }
 
-const Footer = () => {
+export const Footer = () => {
     return (
         <div className="FOUO-footer">
             <div className="FOUO-text">
@@ -21,5 +21,3 @@ const Footer = () => {
         </div>
     )
 }
-
-export {Header, Footer}
