@@ -32,14 +32,17 @@ export const SpecCard = ({ iconImage, bodyImage, title, description, color, orde
         }
 
         const fileUpload = (input) => {
-            if (input.files && input.files[0]) {
-
+            console.log(input);
+            const files = input.target.files;
+            if (files.length > 0) {
                 let reader = new FileReader();
-                reader.onloadend = (e) => {
-                    document.getElementById("bodyImage").setAttribute("src", e.result);
-                };
+                
+                reader.addEventListener('loadend', e => {
+                    console.log(e.target);
+                    document.getElementById("bodyImage").setAttribute("src", e.target.result);
+                });
 
-                reader.readAsDataURL(input.files[0]);
+                reader.readAsDataURL(files[0]);
             }
         }
 
