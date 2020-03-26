@@ -1,12 +1,14 @@
 import React, { useState} from 'react';
 import { Card, CardBody, Container, Row, Col, Modal, ModalBody, ModalHeader, Form, FormGroup, FormText, Label, Input, Button, FormFeedback} from 'reactstrap';
+import { useCustomContext } from '../lib/mgmt.component.jsx';
+
 import { CommentList } from './CommentList';
 
 
 
 export const SpecCard = ({ iconImage, bodyImage, title, description, color, order}) => {
-    
     const [modal, setModal] = useState(false);
+    const [{ Mission }, setMission] = useCustomContext('global');
 
     const toggleEditModal = () => setModal(!modal);
     
@@ -25,20 +27,20 @@ export const SpecCard = ({ iconImage, bodyImage, title, description, color, orde
             for (const [key, value] of formData.entries()) {
                 formJson[key] = value;
             }
-            console.log(formJson);
+            
             toggleEditModal();
         }
 
         const fileUpload = (input) => {
-            // if (input.files && input.files[0]) {
+            if (input.files && input.files[0]) {
 
-            //     let reader = new FileReader();
-            //     reader.onload = (e) => {
-            //         document.getElementById("bodyImage").setAttribute("src", e.target.result);
-            //     };
+                let reader = new FileReader();
+                reader.onloadend = (e) => {
+                    document.getElementById("bodyImage").setAttribute("src", e.result);
+                };
 
-            //     reader.readAsDataURL(input.files[0]);
-            // }
+                reader.readAsDataURL(input.files[0]);
+            }
         }
 
         return (

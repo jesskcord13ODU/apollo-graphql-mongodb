@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Card, CardBody, Row, Col, UncontrolledDropdown } from 'reactstrap';
-import { SpecList } from './SpecList';
+import { SpecList } from './SpecList.component';
 import { CommentList } from './CommentList';
 import { useCustomContext } from '../lib/mgmt.component';
 import { isEmpty } from '../lib/utility';

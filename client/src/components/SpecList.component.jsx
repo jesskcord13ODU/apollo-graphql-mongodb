@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {SpecCard} from './SpecCard';
+import {SpecCard} from './SpecCard.component.jsx';
 import { Card, CardHeader, CardBody, Col, InputGroup,
          InputGroupAddon, Button, Input, ListGroup, Tooltip, Container } from 'reactstrap';
 
