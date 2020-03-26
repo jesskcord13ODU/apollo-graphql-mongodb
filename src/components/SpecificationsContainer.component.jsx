@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Card, CardBody, Row, Col } from 'reactstrap';
+import { Card, CardBody, Row, Col} from 'reactstrap';
 import { SpecList } from './SpecList';
 import { CommentList } from './CommentList';
 
@@ -9,11 +9,12 @@ export const SpecsContainer = ({ specifications, specSelected }) => {
                                             specifications[0].category :
                                             specSelected);
     const [spec, setSpec] = useState(specifications[0]);
-    // useEffect will need to be adde
     useEffect(() => {
         const ele = specifications.filter(ele => {
-            if (ele.category === currTab) { return ele}});
-        console.log(ele[0]["category"]);
+            if (ele.category === currTab) {
+                return ele;
+            }
+        });
         setSpec(ele[0]);
     }, [currTab]);
 
@@ -40,7 +41,6 @@ export const SpecsContainer = ({ specifications, specSelected }) => {
                     <Row className={"h-100 w-100"}>
                         <Col className={"h-100 w-100"} xs={"8"}>
                             <article className={"h-100 w-100"} title={currTab}>
-                                {console.log(spec)}
                                 <SpecList specs={spec.specEntries} />
                             </article>
                         </Col>
@@ -54,8 +54,8 @@ export const SpecsContainer = ({ specifications, specSelected }) => {
     );
 }
 
-const SpecificationTab = ({ name, tabChange }) => {
+const SpecificationTab = ({ name, tabChange}) => {
     return (
-    <Button onClick={tabChange}>{name}</Button>
+        <button className={"className"} onClick={tabChange}>{name}</button>
     );
 }
