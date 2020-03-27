@@ -35,7 +35,7 @@ export const Mission = () => {
                               title: "Weather",
                               description: "Lorem ipsum ad infinitum",
                               bodyImage: "weatherMap.jpg",
-                              color: "red",
+                              color: "#ff0000",
                               order: "1",
                           },
                           {
@@ -43,7 +43,7 @@ export const Mission = () => {
                               title: "Terrain",
                               description: "Lorem ipsum ad infinitum",
                               bodyImage: "ambushMap.png",
-                              color: "green",
+                              color: "#00ff00",
                               order: "2",
                           },
                           {
@@ -51,7 +51,7 @@ export const Mission = () => {
                               title: "Lorem Ipsum3",
                               description: "Lorem ipsum ad infinitum",
                               bodyImage: "weatherMap.jpg",
-                              color: "blue",
+                              color: "#0000ff",
                               order: "3",
                           }
                       ]
@@ -64,21 +64,21 @@ export const Mission = () => {
                               title: "Possible Enemy Armaments",
                               description: "MP5, AK-47, SCAR, RPG, Vector",
                               bodyImage: "arms.jpg",
-                              color: "red"
+                              color: "#ff0000"
                           },
                           {
                               iconImage: "knowledgeBase.png",
                               title: "Intel Analysis",
                               description: "Still waiting on final results",
                               bodyImage: "analysis.jpg",
-                              color: "green"
+                              color: "#00ff00"
                           },
                           {
                               iconImage: "key.png",
                               title: "Auth Chain",
                               description: "Command chain to be deteremined soon",
                               bodyImage: "faces/Desert.png",
-                              color: "purple"
+                              color: "#6a0dad"
                           }
                       ]
                   },
@@ -90,14 +90,14 @@ export const Mission = () => {
                               title: "Prepartion",
                               description: "This mission requires these steps to prepare",
                               bodyImage: "faces/Woman.png",
-                              color: "blue"
+                              color: "#0000ff"
                           },
                           {
                               iconImage: "download.png",
                               title: "Deployment",
                               description: "These units will be deployed here",
                               bodyImage: "faces/Tank.png",
-                              color: "purple"
+                              color: "#6a0dad"
                           }
                       ]
                   },
@@ -109,7 +109,7 @@ export const Mission = () => {
                               title: "Units",
                               description: "Combat Ready Units",
                               bodyImage: "faces/MilitaryGuy.png",
-                              color: "orange"
+                              color: "#ffa500"
                           }
                       ]
                   }]

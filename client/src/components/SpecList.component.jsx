@@ -23,7 +23,7 @@ const NewSpecButton = () => {
     );
 }
 
-export const SpecList = ({ specs }) => {
+export const SpecList = ({ specs, currTab }) => {
 
     const [visibleSpecs, setVisibleSpecs] = useState(specs);
 
@@ -64,7 +64,8 @@ export const SpecList = ({ specs }) => {
                                     description={ele.description}
                                     bodyImage={ele.bodyImage}
                                     color={ele.color}
-                                    order={ele.order}
+                                    order={i}
+                                    currTab={currTab}
                                     key={i}/>)
                             :
                             "Waiting on data..."

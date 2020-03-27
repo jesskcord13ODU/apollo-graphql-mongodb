@@ -52,7 +52,12 @@ export const SpecsContainer = ({ specSelected }) => {
                     <Row className={"h-100 w-100"}>
                         <Col className={"h-100 w-100"} xs={"8"}>
                             <article className={"h-100 w-100"} title={currTab}>
-                                <SpecList specs={spec.specEntries} />
+                                <SpecList specs={spec.specEntries} 
+                                          currTab={!isEmpty(Mission) ?
+                                                    Mission
+                                                    .specificationsT
+                                                    .findIndex(x => currTab === x.category)
+                                                    : 0}/>
                             </article>
                         </Col>
                         <Col xs={"4"}>
