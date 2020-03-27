@@ -57,8 +57,8 @@ type ReplaceMissionId struct {
 
 type ReplaceSpecificationEntry struct {
 	MissionId     string    `json:"missionId"`
-	Specification string    `json:"spec"`
-	EntryIdx      int32     `json:"entryIdx"`
+	Specification int       `json:"spec"`
+	EntryIdx      int       `json:"entryIdx"`
 	Entry         SpecEntry `json:"specEntry"`
 }
 
@@ -344,6 +344,8 @@ func updateMissionSpec(w http.ResponseWriter, req *http.Request) {
 	body, err := ioutil.ReadAll(req.Body)
 	json.Unmarshal(body, &newVal)
 
+	fmt.Printf("-update--> %v", newVal.MissionId)
+
 	// Set client options
 	clientOptions := options.Client().ApplyURI(mongoConnectionString)
 
@@ -364,20 +366,27 @@ func updateMissionSpec(w http.ResponseWriter, req *http.Request) {
 	// get a collection connection to the DB
 	collection := client.Database("test").Collection("muse")
 
-	specString := "specificationst." + newVal.Specification + ".specentries." + newVal.EntryIdx
+	specString := fmt.Sprint("specificationst.", newVal.Specification, ".specentries.", newVal.EntryIdx)
 
-	filter := bson.M{{"missionId": newVal.missionId}}
-	update := bson.M{{
-				"$set": bson.M{{
-					specString: newVal.Entry
-				}}}}
-	
-	updateRs, err := collection.UpdateOne(context.TODO(), filter, update)
+	w.Write([]byte(specString))
+
+	filter := bson.M{"missionid": newVal.MissionId}
+	update := bson.M{
+		"$set": bson.M{
+			specString: newVal.Entry,
+		},
+	}
+
+	// You know that this accepts any interface?! Do we even need reflections then?
+	updateRes, err := collection.UpdateOne(context.TODO(), filter, update)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Printf("Completed update on %v. Number of docs modified", newVal.MissionId, updateRes.ModifiedCount)
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte(`{"message":"Successfully updated specification"}`))
+
+	fmt.Printf("Completed update on %v. Number of docs modified %v", newVal.MissionId, updateRes.ModifiedCount)
 }
 
 func main() {
