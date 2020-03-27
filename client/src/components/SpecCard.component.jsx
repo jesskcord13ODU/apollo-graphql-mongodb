@@ -37,7 +37,8 @@ export const SpecCard = ({ iconImage, bodyImage, title, description, color, orde
             onDragStart={dragStartHandler}
             onDragOver={dragOverHandler}
             onDrop={dropHandler}
-            className={"shadow-sm spec-card " + color}
+            className={"shadow-sm spec-card "}
+            style={{borderTopColor: color}}
             >
             <EditModal modal={modal} toggleEditModal={toggleEditModal}
                        bodyImage={bodyImage} description={description}
@@ -75,10 +76,9 @@ const EditModal = ({ modal, toggleEditModal, iconImage, bodyImage, title, descri
         let updatedEntry = Mission.specificationsT[currTab]["specEntries"][order];
         
         for (const ele of e.target.parentElement) {
-            if (ele.tagName === "INPUT" && ele.type === "file" && ele.value === "") {
-                if (ele.type === "button") { continue; }
-                continue;
-            }
+            if (ele.tagName === "INPUT" &&  ele.value === "") { continue; }
+            if (ele.tagName === "BUTTON") { continue; }
+            console.log(ele);
             updatedEntry[ele.name] = ele.value;
         }
 
@@ -92,7 +92,7 @@ const EditModal = ({ modal, toggleEditModal, iconImage, bodyImage, title, descri
 
         console.log(Mission);
 
-        fetch(`http://${process.env.REACT_APP_HOST}/replaceMissionSpec`, {
+        fetch(`http://${process.env.REACT_APP_HOST}/updateMissionSpec`, {
             method: "POST",
             body: JSON.stringify({
                 "missionId": Mission.missionId,
