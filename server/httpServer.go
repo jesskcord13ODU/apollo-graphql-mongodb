@@ -344,6 +344,8 @@ func updateMissionSpec(w http.ResponseWriter, req *http.Request) {
 	body, err := ioutil.ReadAll(req.Body)
 	json.Unmarshal(body, &newVal)
 
+	fmt.Printf("-update--> %v", newVal.MissionId)
+
 	// Set client options
 	clientOptions := options.Client().ApplyURI(mongoConnectionString)
 
@@ -366,12 +368,12 @@ func updateMissionSpec(w http.ResponseWriter, req *http.Request) {
 
 	specString := fmt.Sprint("specificationst.", newVal.Specification, ".specentries.", newVal.EntryIdx)
 
-	filter := bson.M{"missionId": newVal.MissionId}
+	w.Write([]byte(specString))
+
+	filter := bson.M{"missionid": newVal.MissionId}
 	update := bson.M{
 		"$set": bson.M{
-			specString: bson.M{
-				"iconimage": newVal.Entry,
-			},
+			specString: newVal.Entry,
 		},
 	}
 
@@ -380,7 +382,10 @@ func updateMissionSpec(w http.ResponseWriter, req *http.Request) {
 		log.Fatal(err)
 	}
 
-	fmt.Printf("Completed update on %v. Number of docs modified", newVal.MissionId, updateRes.ModifiedCount)
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte(`{"message":"Successfully updated specification"}`))
+
+	fmt.Printf("Completed update on %v. Number of docs modified %v", newVal.MissionId, updateRes.ModifiedCount)
 }
 
 func main() {
