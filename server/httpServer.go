@@ -38,6 +38,14 @@ type MissionSpecification struct {
 	} `json:"specificationsT"`
 }
 
+type SpecEntry struct {
+	IconImage   string `json:"iconImage"`
+	Title       string `json:"title"`
+	Description string `json:"description"`
+	BodyImage   string `json:"bodyImage"`
+	Color       string `json:"color"`
+}
+
 type FindMissionId struct {
 	MissionId string `json:"missionId"`
 }
@@ -45,6 +53,13 @@ type FindMissionId struct {
 type ReplaceMissionId struct {
 	MissionId               string `json:"missionId"`
 	NewMissionSpecification MissionSpecification
+}
+
+type ReplaceSpecificationEntry struct {
+	MissionId     string    `json:"missionId"`
+	Specification string    `json:"spec"`
+	EntryIdx      int32     `json:"entryIdx"`
+	Entry         SpecEntry `json:"specEntry"`
 }
 
 func ello() string {
@@ -323,6 +338,48 @@ func replaceMissionSpec(w http.ResponseWriter, req *http.Request) {
 	}
 }
 
+func updateMissionSpec(w http.ResponseWriter, req *http.Request) {
+
+	var newVal ReplaceSpecificationEntry
+	body, err := ioutil.ReadAll(req.Body)
+	json.Unmarshal(body, &newVal)
+
+	// Set client options
+	clientOptions := options.Client().ApplyURI(mongoConnectionString)
+
+	// Connect to MongoDB
+	client, err := mongo.Connect(context.TODO(), clientOptions)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Check the connection
+	err = client.Ping(context.TODO(), nil)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// get a collection connection to the DB
+	collection := client.Database("test").Collection("muse")
+
+	specString := "specificationst." + newVal.Specification + ".specentries." + newVal.EntryIdx
+
+	filter := bson.M{{"missionId": newVal.missionId}}
+	update := bson.M{{
+				"$set": bson.M{{
+					specString: newVal.Entry
+				}}}}
+	
+	updateRs, err := collection.UpdateOne(context.TODO(), filter, update)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Printf("Completed update on %v. Number of docs modified", newVal.MissionId, updateRes.ModifiedCount)
+}
+
 func main() {
 
 	fmt.Printf("connecting on %v\n", mongoConnectionString)
@@ -342,6 +399,7 @@ func main() {
 	http.HandleFunc("/retrieveMissions", addCORS(retrieveMissions))
 	http.HandleFunc("/findMissionById", addCORS(findMissionById))
 	http.HandleFunc("/replaceMissionSpec", addCORS(replaceMissionSpec))
+	http.HandleFunc("/updateMissionSpec", addCORS(updateMissionSpec))
 
 	fmt.Println("running on  port 8090")
 	http.ListenAndServe(":8090", nil)
