@@ -57,8 +57,8 @@ type ReplaceMissionId struct {
 
 type ReplaceSpecificationEntry struct {
 	MissionId     string    `json:"missionId"`
-	Specification string    `json:"spec"`
-	EntryIdx      int32     `json:"entryIdx"`
+	Specification int       `json:"spec"`
+	EntryIdx      int       `json:"entryIdx"`
 	Entry         SpecEntry `json:"specEntry"`
 }
 
@@ -364,15 +364,18 @@ func updateMissionSpec(w http.ResponseWriter, req *http.Request) {
 	// get a collection connection to the DB
 	collection := client.Database("test").Collection("muse")
 
-	specString := "specificationst." + newVal.Specification + ".specentries." + newVal.EntryIdx
+	specString := fmt.Sprint("specificationst.", newVal.Specification, ".specentries.", newVal.EntryIdx)
 
-	filter := bson.M{{"missionId": newVal.missionId}}
-	update := bson.M{{
-				"$set": bson.M{{
-					specString: newVal.Entry
-				}}}}
-	
-	updateRs, err := collection.UpdateOne(context.TODO(), filter, update)
+	filter := bson.M{"missionId": newVal.MissionId}
+	update := bson.M{
+		"$set": bson.M{
+			specString: bson.M{
+				"iconimage": newVal.Entry,
+			},
+		},
+	}
+
+	updateRes, err := collection.UpdateOne(context.TODO(), filter, update)
 	if err != nil {
 		log.Fatal(err)
 	}
