@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import {SpecCard} from './SpecCard';
+import React, { useState, useEffect } from 'react';
+import {SpecCard} from './SpecCard.component.jsx';
 import { Card, CardHeader, CardBody, Col, InputGroup,
          InputGroupAddon, Button, Input, ListGroup, Tooltip, Container } from 'reactstrap';
 
@@ -23,7 +23,20 @@ const NewSpecButton = () => {
     );
 }
 
-export const SpecList = ({ specs }) => {
+export const SpecList = ({ specs, currTab }) => {
+
+    const [visibleSpecs, setVisibleSpecs] = useState(specs);
+
+    useEffect(() => {
+        setVisibleSpecs(specs);
+        document.getElementById("filter-input").value = "";
+    }, [specs]);
+
+    const filterSpecs = () => {
+        let term = document.getElementById("filter-input").value;
+        let filtered = specs.filter(spec => spec.title.toLowerCase().includes(term.toLowerCase()));
+        setVisibleSpecs(filtered);
+    }
 
     return (
         <Card className={"h-100 w-100 bg-light"}>
@@ -34,9 +47,9 @@ export const SpecList = ({ specs }) => {
                     </Col>
                     <Col className={"d-flex justify-content-end"}>
                         <InputGroup mb={"3"}>
-                            <Input type={"text"} className={"form-control"} placeholder={"Test"}/>
+                            <Input id={"filter-input"} type={"text"} className={"form-control"} placeholder={""}/>
                             <InputGroupAddon addonType={"append"}>
-                                <Button color={"secondary"}>Filter</Button>
+                                <Button onClick={filterSpecs} color={"secondary"}>Filter</Button>
                             </InputGroupAddon>
                         </InputGroup>
                     </Col>
@@ -45,13 +58,14 @@ export const SpecList = ({ specs }) => {
             <CardBody className={"spec-list h-100 w-100"}>
                 <div className={"h-100 w-100 overflow-auto"}>
                     {   
-                        specs !== undefined ? specs.map((ele, i) => 
+                        visibleSpecs !== undefined ? visibleSpecs.map((ele, i) => 
                                 <SpecCard iconImage={ele.iconImage}
                                     title={ele.title}
                                     description={ele.description}
                                     bodyImage={ele.bodyImage}
                                     color={ele.color}
-                                    order={ele.order}
+                                    order={i}
+                                    currTab={currTab}
                                     key={i}/>)
                             :
                             "Waiting on data..."
