@@ -377,6 +377,7 @@ func updateMissionSpec(w http.ResponseWriter, req *http.Request) {
 		},
 	}
 
+	// You know that this accepts any interface?! Do we even need reflections then?
 	updateRes, err := collection.UpdateOne(context.TODO(), filter, update)
 	if err != nil {
 		log.Fatal(err)
