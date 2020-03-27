@@ -1,5 +1,10 @@
 package main
+/** 
+ we only hit one API here.
 
+ the rest depend on having a database up.
+
+ */
 import (
 	"testing"
 	"net/http/httptest"
@@ -14,6 +19,9 @@ func TestHello(t *testing.T) {
 	}
 }
 
+/** 
+ * just chek to see that we can hit the "hello" function.
+  */
 func TestGetHello(t *testing.T) { 
 	req, err := http.NewRequest("GET", "/hello", nil)
 	if err != nil {
