@@ -27,6 +27,7 @@
 
   background-image: url(/static/media/bg.f364e66f.png);
   background-color: #282c34;
+  /* background-color: lightsteelblue; */
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -56,7 +57,28 @@
 }
 
 .page nav {
-  text-align: center;
+  display: flex;
+  /* justify-content: center; */
+}
+
+.page nav > button {
+  border: solid 1px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom: none;
+  background-color: lightgray;
+  padding: .5em;
+  padding-bottom: .25em;
+  padding-top: .25em;
+}
+
+.page nav > button:hover {
+  background: lightsteelblue;
+}
+
+.page nav > button:focus {
+  background: white;
+  /* width: 125%; */
 }
 
 .App-logo {
@@ -197,7 +219,28 @@
 }
 
 .edit-modal {
-  min-width: 60vw;
+  height: 75vh;
+  width: 75vw;
+  min-width: 75vw;
+  max-width: 75vw;
+  min-height: 75vh;
+  max-height: 75vh;
+
+  overflow: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+}
+
+.edit-modal > * {
+  height: 100%;
+  padding-bottom: 1em;
+}
+
+.modal-body {
+  height: 100%;
+  overflow: auto;
 }
 
 .comment-list {

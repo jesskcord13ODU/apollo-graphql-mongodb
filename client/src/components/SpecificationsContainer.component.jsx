@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Card, CardBody, Row, Col, UncontrolledDropdown } from 'reactstrap';
-import { SpecList } from './SpecList';
+import { SpecList } from './SpecList.component';
 import { CommentList } from './CommentList';
 import { useCustomContext } from '../lib/mgmt.component';
 import { isEmpty } from '../lib/utility';
@@ -52,8 +52,12 @@ export const SpecsContainer = ({ specSelected }) => {
                     <Row className={"h-100 w-100"}>
                         <Col className={"h-100 w-100"} xs={"8"}>
                             <article className={"h-100 w-100"} title={currTab}>
-                                {console.log(spec)}
-                                <SpecList specs={spec.specEntries} />
+                                <SpecList specs={spec.specEntries} 
+                                          currTab={!isEmpty(Mission) ?
+                                                    Mission
+                                                    .specificationsT
+                                                    .findIndex(x => currTab === x.category)
+                                                    : 0}/>
                             </article>
                         </Col>
                         <Col xs={"4"}>
@@ -66,8 +70,8 @@ export const SpecsContainer = ({ specSelected }) => {
     );
 }
 
-const SpecificationTab = ({ name, tabChange }) => {
+const SpecificationTab = ({ name, tabChange}) => {
     return (
-    <Button onClick={tabChange}>{name}</Button>
+        <button className={"className"} onClick={tabChange}>{name}</button>
     );
 }

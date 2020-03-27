@@ -38,6 +38,14 @@ type MissionSpecification struct {
 	} `json:"specificationsT"`
 }
 
+type SpecEntry struct {
+	IconImage   string `json:"iconImage"`
+	Title       string `json:"title"`
+	Description string `json:"description"`
+	BodyImage   string `json:"bodyImage"`
+	Color       string `json:"color"`
+}
+
 type FindMissionId struct {
 	MissionId string `json:"missionId"`
 }
@@ -45,6 +53,13 @@ type FindMissionId struct {
 type ReplaceMissionId struct {
 	MissionId               string `json:"missionId"`
 	NewMissionSpecification MissionSpecification
+}
+
+type ReplaceSpecificationEntry struct {
+	MissionId     string    `json:"missionId"`
+	Specification int       `json:"spec"`
+	EntryIdx      int       `json:"entryIdx"`
+	Entry         SpecEntry `json:"specEntry"`
 }
 
 func ello() string {
@@ -323,6 +338,57 @@ func replaceMissionSpec(w http.ResponseWriter, req *http.Request) {
 	}
 }
 
+func updateMissionSpec(w http.ResponseWriter, req *http.Request) {
+
+	var newVal ReplaceSpecificationEntry
+	body, err := ioutil.ReadAll(req.Body)
+	json.Unmarshal(body, &newVal)
+
+	fmt.Printf("-update--> %v", newVal.MissionId)
+
+	// Set client options
+	clientOptions := options.Client().ApplyURI(mongoConnectionString)
+
+	// Connect to MongoDB
+	client, err := mongo.Connect(context.TODO(), clientOptions)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Check the connection
+	err = client.Ping(context.TODO(), nil)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// get a collection connection to the DB
+	collection := client.Database("test").Collection("muse")
+
+	specString := fmt.Sprint("specificationst.", newVal.Specification, ".specentries.", newVal.EntryIdx)
+
+	w.Write([]byte(specString))
+
+	filter := bson.M{"missionid": newVal.MissionId}
+	update := bson.M{
+		"$set": bson.M{
+			specString: newVal.Entry,
+		},
+	}
+
+	// You know that this accepts any interface?! Do we even need reflections then?
+	updateRes, err := collection.UpdateOne(context.TODO(), filter, update)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte(`{"message":"Successfully updated specification"}`))
+
+	fmt.Printf("Completed update on %v. Number of docs modified %v", newVal.MissionId, updateRes.ModifiedCount)
+}
+
 func main() {
 
 	fmt.Printf("connecting on %v\n", mongoConnectionString)
@@ -342,6 +408,7 @@ func main() {
 	http.HandleFunc("/retrieveMissions", addCORS(retrieveMissions))
 	http.HandleFunc("/findMissionById", addCORS(findMissionById))
 	http.HandleFunc("/replaceMissionSpec", addCORS(replaceMissionSpec))
+	http.HandleFunc("/updateMissionSpec", addCORS(updateMissionSpec))
 
 	fmt.Println("running on  port 8090")
 	http.ListenAndServe(":8090", nil)
