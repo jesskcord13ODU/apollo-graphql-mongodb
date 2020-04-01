@@ -11,14 +11,20 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
+	"github.com/joho/godotenv"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
+
+	
 )
 
+var mongoConnectionString string
 var collection *mongo.Collection
-var mongoConnectionString = "mongodb://magoo:t1y2p3e4@mongodb:27017/test?authSource=admin"
+// var mongoConnectionString = "mongodb://magoo:t1y2p3e4@localhost:27017/test?authSource=admin"
+
 
 // The structure I'll work with
 //
@@ -96,7 +102,7 @@ func saveMissionToMongo(w http.ResponseWriter, req *http.Request) {
 	// var text TextType
 
 	var mission MissionSpecification
-
+	fmt.Printf("connecting 3 on %v\n", mongoConnectionString)
 	// Set client options
 	clientOptions := options.Client().ApplyURI(mongoConnectionString)
 
@@ -182,8 +188,8 @@ func retrieveMissions(w http.ResponseWriter, req *http.Request) {
 	for cur.Next(context.TODO()) {
 		var misSpec MissionSpecification
 		err = cur.Decode(&misSpec)
-		fmt.Println("retrieve-->", misSpec)
-		fmt.Println("retrieve-->mission--->", misSpec)
+		// fmt.Println("retrieve-->", misSpec)
+		// fmt.Println("retrieve-->mission--->", misSpec)
 		results = append(results, &misSpec)
 	}
 
@@ -389,9 +395,18 @@ func updateMissionSpec(w http.ResponseWriter, req *http.Request) {
 	fmt.Printf("Completed update on %v. Number of docs modified %v", newVal.MissionId, updateRes.ModifiedCount)
 }
 
+
 func main() {
 
-	fmt.Printf("connecting on %v\n", mongoConnectionString)
+	// gather connection string from env
+	err := godotenv.Load()
+	if err != nil {
+		log.Print("No .env file found")
+		return
+	}
+	mongoConnectionString = os.Getenv("CONN_STRING")
+	fmt.Printf("init: --> con string = %s\n", mongoConnectionString)
+
 	// serve static content (e.g. the index.html react js app)
 	http.HandleFunc("/", addCORS(func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "This is a website server by a Go HTTP server.")
@@ -410,6 +425,7 @@ func main() {
 	http.HandleFunc("/replaceMissionSpec", addCORS(replaceMissionSpec))
 	http.HandleFunc("/updateMissionSpec", addCORS(updateMissionSpec))
 
+	fmt.Printf("connecting 2 on %v\n", mongoConnectionString)
 	fmt.Println("running on  port 8090")
 	http.ListenAndServe(":8090", nil)
 }
