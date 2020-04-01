@@ -1,13 +1,13 @@
 
+
 FROM golang:1.14
-
-RUN mkdir -p /app
 WORKDIR /app
-
+ 
 COPY . .
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o httpServer .
 
-RUN go build -a -installsuffix cgo -o httpServer 
-EXPOSE 8090
-EXPOSE 27017
-CMD [ "./httpServer" ]
-
+FROM alpine:latest  
+RUN apk --no-cache add ca-certificates
+WORKDIR /app/
+COPY --from=0 /app/httpServer .
+CMD ["./httpServer"]
