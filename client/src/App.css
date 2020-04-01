@@ -1,0 +1,301 @@
+#root {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.app {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+
+  background-image: url(/static/media/bg.f364e66f.png);
+  background-color: #282c34;
+  /* background-color: lightsteelblue; */
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.page {
+  height: 75%;
+  width: 75%;
+
+  min-width: 75%;
+  max-width: 75%;
+  min-height: 75%;
+  max-height: 75%;
+
+  margin: 0;
+  padding: 0;
+  overflow: hidden auto; /* TODO: [MEI-89] Evaluate need to hide overflows */
+  align-self: center;
+}
+
+.page > * {
+  width: 100%;
+  height: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+}
+
+.page nav {
+  display: flex;
+  /* justify-content: center; */
+}
+
+.page nav > button {
+  border: solid 1px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom: none;
+  background-color: lightgray;
+  padding: .5em;
+  padding-bottom: .25em;
+  padding-top: .25em;
+}
+
+.page nav > button:hover {
+  background: lightsteelblue;
+}
+
+.page nav > button:focus {
+  background: white;
+  /* width: 125%; */
+}
+
+.App-logo {
+  height: 2.5vmin;
+}
+
+.Login-logo {
+  height: 7vh;
+  object-fit: contain;
+}
+
+.Modal-logo {
+  height: 3.5vmin;
+  pointer-events: none;
+  margin: auto;
+  text-align: center;
+}
+
+.FOUO-header {
+  width: 100%;
+  background-color: #008AFF;
+  align-self: flex-start;
+}
+
+.FOUO-footer {
+  width: 100%;
+  background-color: #008AFF;
+  align-self: flex-end;
+}
+
+.FOUO-text {
+  color: white;
+  font-weight: bold;
+  font-size: calc(5px + 1vmin);
+  text-align: center;
+}
+
+.login {
+  height: 50%;
+  width: 50%;
+  min-width: 0%;
+  max-width: 100%;
+  min-height: 0%;
+  max-height: 100%;
+}
+
+.Login-padding {
+  padding: 12px;
+}
+
+.Login-body {
+  font-size: calc(3px + 1.5vmin);
+}
+
+.Button-padding {
+  padding: 6px;
+}
+
+.Top-padding {
+  padding-top: 6px;
+}
+
+.Navbar-icon {
+  height: 1.5em;
+  width: auto;
+  padding-left: 15px;
+}
+
+.Navbar-dropdown {
+  color: #000000;
+  background: #E0E0E0;
+  font-size: calc(1px + 1vmin);
+  font-weight: bold;
+  border-color: #999999;
+}
+
+.User-circle-small {
+  background: lightblue;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-self: center;
+  justify-self: center;
+}
+
+.User-img-round {
+    border-radius: 50%;
+    width:85%; 
+    height:85%;
+    margin: auto;
+}
+
+.Navbar-line {
+  background: #aaaaaa;
+  width: 2px;
+  height: 25px;
+  list-style: none;
+}
+
+.Navbar-line-padding {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.spec-card {
+  text-align: left;
+  margin: 1rem;
+  border-top-width: .25rem;
+  border-radius: .25rem;
+}
+
+.spec-card.red {
+  border-top-color: red;
+}
+
+.spec-card.blue {
+  border-top-color: blue;
+}
+
+.spec-card.white {
+  border-top-color: white;
+}
+
+.spec-card.none {
+  border-top-color: transparent;
+}
+
+.spec-create-button {
+  background-color: transparent;
+  margin: 1rem;
+  border: .25rem dashed #cccccc;
+  border-radius: .25rem;
+}
+
+.spec-list {
+  overflow: auto;
+}
+
+.edit-modal {
+  height: 75vh;
+  width: 75vw;
+  min-width: 75vw;
+  max-width: 75vw;
+  min-height: 75vh;
+  max-height: 75vh;
+
+  overflow: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+}
+
+.edit-modal > * {
+  height: 100%;
+  padding-bottom: 1em;
+}
+
+.modal-body {
+  height: 100%;
+  overflow: auto;
+}
+
+.comment-list {
+  overflow: auto; 
+}
+
+.user-scroll {
+  overflow-y: auto;
+}
+
+.tmp-fix {
+  padding-top: 100px;
+}
+
+.no-lst {
+  list-style: none;
+}
+
+.thread-button::after {
+  vertical-align: -40%;
+  content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAo0lEQVRYhe2VYQqAIAyFX9EVCrr/jfJHx6lfhtjMuVaL2AMRRLeP56aA68PaBGMFMFsCqELEgBJgFQgpQEjmyQJgBLBAwQkpALQg7tRAPkLpUFcJWNtD7W/KNTCDc1QCvQTrFQFEcgAHMAfQbMNUVOula0fL/taBqPxxOjlj7oADvPkbkjJ34IkuKFU+uc4BEFnL1aevgFt8USKnWpOoA5hfwQ6GPU4HtBOdYQAAAABJRU5ErkJggg==");
+}
+
+.center-modal-header > h5 {
+  margin-left: auto;
+  padding-left: 1em; /* Comes from 1em padding on close button */
+}
+
+.center-modal-footer {
+  margin-left: 41%;
+}
+
+.modal-center {
+  width: fit-content;
+  height: fit-content;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cust-card-title {
+  font-size: large;
+  font-weight: bold;
+}
+
+.cust-card-title-sub {
+  font-size: small;
+  margin-left: 2em
+}
+
+.mission-img-link {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.25em;
+  box-shadow: 0 0.25em 0.25em rgba(0,0,0,0.25);
+}
