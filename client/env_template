@@ -1,0 +1,4 @@
+# The react app wants to know where to hit the server
+#
+# NOTE: this var is propogated by webpack, thus it happens at build time only
+REACT_APP_HOST="localhost:8090"
