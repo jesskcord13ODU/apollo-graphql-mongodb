@@ -25,6 +25,10 @@ var mongoConnectionString string
 var collection *mongo.Collection
 // var mongoConnectionString = "mongodb://magoo:t1y2p3e4@localhost:27017/test?authSource=admin"
 
+
+/**
+* mission engineer definition
+*/
 type MissionEngineer struct {
 	Name string `json:"name"`
 	Role []string `json:"role"`
