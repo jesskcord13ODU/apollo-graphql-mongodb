@@ -12,13 +12,10 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"github.com/joho/godotenv"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-
-	
 )
 
 var mongoConnectionString string
@@ -490,7 +487,6 @@ func getMissionEngineers(w http.ResponseWriter, req *http.Request) {
 
 	// Check the connection
 	err = client.Ping(context.TODO(), nil)
-
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -594,13 +590,7 @@ func modMissionEngineer(w http.ResponseWriter, req *http.Request) {
 * main driver
 */
 func main() {
-
 	// gather connection string from env
-	err := godotenv.Load()
-	if err != nil {
-		log.Print("No .env file found")
-		return
-	}
 	mongoConnectionString = os.Getenv("CONN_STRING")
 	fmt.Printf("init: --> con string = %s\n", mongoConnectionString)
 

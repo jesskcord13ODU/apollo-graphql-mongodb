@@ -1,0 +1,7 @@
+FROM node:13.12
+WORKDIR /front-app
+
+COPY . .
+RUN npm install
+# RUN echo REACT_APP_HOST=$(ip route get 1 | awk '{print $7;exit}'):8090 > .env --works just not desired outcome :(
+CMD ["npm","run","start"]
