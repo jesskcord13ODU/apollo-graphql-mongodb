@@ -215,6 +215,9 @@ func retrieveMissions(w http.ResponseWriter, req *http.Request) {
 
 }
 
+/**
+* findMissionById - get a mission using the input id
+*/
 func findMissionById(w http.ResponseWriter, req *http.Request) {
 
 	var misID FindMissionId
@@ -280,6 +283,9 @@ func findMissionById(w http.ResponseWriter, req *http.Request) {
 	}
 }
 
+/**
+* wrapper to handle the CORS problems
+*/
 func addCORS(endpoint func(http.ResponseWriter, *http.Request)) http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("%v", r)
@@ -298,6 +304,9 @@ func addCORS(endpoint func(http.ResponseWriter, *http.Request)) http.HandlerFunc
 	})
 }
 
+/**
+* replace a Mission Spec in place
+*/
 func replaceMissionSpec(w http.ResponseWriter, req *http.Request) {
 
 	var misID ReplaceMissionId
@@ -353,6 +362,10 @@ func replaceMissionSpec(w http.ResponseWriter, req *http.Request) {
 	}
 }
 
+
+/**
+* update a mission spec with input
+*/
 func updateMissionSpec(w http.ResponseWriter, req *http.Request) {
 
 	var newVal ReplaceSpecificationEntry
@@ -404,7 +417,9 @@ func updateMissionSpec(w http.ResponseWriter, req *http.Request) {
 	fmt.Printf("Completed update on %v. Number of docs modified %v", newVal.MissionId, updateRes.ModifiedCount)
 }
 
-
+/**
+* add a mission engineer
+*/
 func addMissionEngineer(w http.ResponseWriter, req *http.Request) {
 
 	// var text TextType
@@ -454,6 +469,9 @@ func addMissionEngineer(w http.ResponseWriter, req *http.Request) {
 	}
 }
 
+/** 
+* get a single MissionEngineer
+*/
 func getMissionEngineers(w http.ResponseWriter, req *http.Request) {
 
 	// Set client options
@@ -510,6 +528,9 @@ func getMissionEngineers(w http.ResponseWriter, req *http.Request) {
 
 }
 
+/**
+* modify a ME, find them, delete and put the input one back
+*/
 func modMissionEngineer(w http.ResponseWriter, req *http.Request) {
 
 	var meStr MissionEngineer
@@ -565,6 +586,9 @@ func modMissionEngineer(w http.ResponseWriter, req *http.Request) {
 	}
 }
 
+/**
+* main driver
+*/
 func main() {
 
 	// gather connection string from env
