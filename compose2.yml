@@ -2,10 +2,10 @@ version: '3'
 
 services:
   mongodb:
-    image: mongo
+    image: mongo:latest
 
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=magoo 
+      - MONGO_INITDB_ROOT_USERNAME=magoo
       - MONGO_INITDB_ROOT_PASSWORD=t1y2p3e4
     ports:
       - 27017-27019:27017-27019
@@ -15,23 +15,29 @@ services:
       - muse-net
 
   backend:
-    image: gohttp
+    image: gohttp:latest
     build:
       context: ./server
       dockerfile: Dockerfile
-    environment:
-      - CONN_STRING="mongodb://magoo:t1y2p3e4@localhost:27017/test?authSource=admin"
-    image: newhttp
-    build:
-      context: .
-      dockerfile: Dockerfile-2.yml
     ports:
       - 8090:8090
     networks:
       - muse-net
 
+  frontend:
+    image: musefront
+    build:
+      context: ./client
+      dockerfile: Dockerfile-2
+    ports:
+      - 3000:3000
+    networks:
+      - muse-net
+    volumes:
+      - Frontend:/frontend
 
 volumes:
   DBTestStorage:
+  Frontend:
 networks:
   muse-net:
