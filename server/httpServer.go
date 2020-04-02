@@ -35,7 +35,7 @@ type MissionEngineer struct {
 	Permissions []string `json:"permissions"`
 	Tags []string `json:"tags"`
 	AssociatedMissions []string `json:"associatedMissions"`
-	Notifications []string `json:"notification"`
+	Notifications []string `json:"notifications"`
 	Alerts []string `json:"alerts"`
 }
 
