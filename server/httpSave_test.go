@@ -31,7 +31,7 @@ func TestPostSave(t *testing.T) {
 		return
 	}
 	mongoConnectionString = os.Getenv("CONN_STRING")
-	fmt.Printf("init: --> con string = %s\n", mongoConnectionString)
+	// fmt.Printf("init: --> con string = %s\n", mongoConnectionString)
 
 		
 
@@ -154,7 +154,7 @@ func TestPostRetrieve(t *testing.T) {
 			return
 		}
 		mongoConnectionString = os.Getenv("CONN_STRING")
-		fmt.Printf("init: --> con string = %s\n", mongoConnectionString)
+		// fmt.Printf("init: --> con string = %s\n", mongoConnectionString)
 	
 		req, err := http.NewRequest("GET", "/retrieveMissions", nil)
 		if err != nil {
@@ -171,7 +171,7 @@ func TestPostRetrieve(t *testing.T) {
 		// Check the response body is what we expect.
 
 		body, err := ioutil.ReadAll(rr.Body)
-		fmt.Printf("%s\n", string(body)) //WORKS
+		// fmt.Printf("%s\n", string(body)) //WORKS
 		// js, err := simplejson.NewJson(body)
 		
 		// total,_ := js.Get("total").String() 
