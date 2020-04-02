@@ -13,9 +13,10 @@ while :; do
 	shift
 done
 
-# Build 
+# Build  -- Not neccessary right now
 cd client
-npm run build
+echo REACT_APP_HOST=$(ip route get 1 | awk '{print $7;exit}'):8090 > .env
+#npm run build
 cd ..
 
 # Docker-Compose
