@@ -25,6 +25,15 @@ var mongoConnectionString string
 var collection *mongo.Collection
 // var mongoConnectionString = "mongodb://magoo:t1y2p3e4@localhost:27017/test?authSource=admin"
 
+type MissionEngineer struct {
+	Name string `json:"name"`
+	Role []string `json:"role"`
+	Permissions []string `json:"permissions"`
+	Tags []string `json:"tags"`
+	AssociatedMissions []string `json:"associatedMissions"`
+	Notifications []string `json:"notification"`
+	Alerts []string `json:"alerts"`
+}
 
 // The structure I'll work with
 //
@@ -396,6 +405,166 @@ func updateMissionSpec(w http.ResponseWriter, req *http.Request) {
 }
 
 
+func addMissionEngineer(w http.ResponseWriter, req *http.Request) {
+
+	// var text TextType
+	var me MissionEngineer
+	fmt.Printf("connecting 3 on %v\n", mongoConnectionString)
+	// Set client options
+	clientOptions := options.Client().ApplyURI(mongoConnectionString)
+
+	// Connect to MongoDB
+	client, err := mongo.Connect(context.TODO(), clientOptions)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Check the connection
+	err = client.Ping(context.TODO(), nil)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// get a collection connection to the DB
+	collection := client.Database("test").Collection("engineers")
+
+	// decding the POST body
+	body, err := ioutil.ReadAll(req.Body)
+	json.Unmarshal(body, &me)
+	fmt.Printf("save--> %s", me.Name)
+
+	// put the body in the DB
+	insertResult, err := collection.InsertOne(context.TODO(), me)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println(insertResult)
+	// create the response
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte(`{"message":"Successfully saved mission engineer"}`))
+
+	// ... and close the db connection
+	err = client.Disconnect(context.TODO())
+
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+func getMissionEngineers(w http.ResponseWriter, req *http.Request) {
+
+	// Set client options
+	clientOptions := options.Client().ApplyURI(mongoConnectionString)
+
+	// Connect to MongoDB
+	client, err := mongo.Connect(context.TODO(), clientOptions)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Check the connection
+	err = client.Ping(context.TODO(), nil)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// build a collection connection to the db
+	collection := client.Database("test").Collection("engineers")
+
+	filter := bson.D{{}}
+	findOptions := options.Find()
+	// Here's an array in which you can store the decoded documents
+	var results []*MissionEngineer
+
+	// find all
+	cur, err := collection.Find(context.TODO(), filter, findOptions)
+	if err != nil {
+		log.Fatal("Error on Finding all the documents", err)
+	}
+
+	w.Header().Set("content-type", "application/json")
+
+	for cur.Next(context.TODO()) {
+		var meSpec MissionEngineer
+		err = cur.Decode(&meSpec)
+		fmt.Println("retrieve-ME->", meSpec.Name)
+		
+		results = append(results, &meSpec)
+	}
+
+	json.NewEncoder(w).Encode(results)
+
+	w.WriteHeader(http.StatusOK)
+
+	// ... and close the db connection
+	err = client.Disconnect(context.TODO())
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+}
+
+func modMissionEngineer(w http.ResponseWriter, req *http.Request) {
+
+	var meStr MissionEngineer
+
+	body, err := ioutil.ReadAll(req.Body)
+	json.Unmarshal(body, &meStr)
+	fmt.Printf("replace by id-1-> %s\n", meStr.Name)
+
+	// Set client options
+	clientOptions := options.Client().ApplyURI(mongoConnectionString)
+
+	// Connect to MongoDB
+	client, err := mongo.Connect(context.TODO(), clientOptions)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Check the connection
+	err = client.Ping(context.TODO(), nil)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// build a collection connection to the db
+	collection := client.Database("test").Collection("engineers")
+
+	filter := bson.M{"name": meStr.Name}
+	fmt.Println("ME-replace-->", filter)
+
+	_, err = collection.DeleteOne(context.TODO(), filter)
+	if err != nil {
+		log.Fatal("Error on Finding all the documents", err)
+	}
+
+	// put the body in the DB
+	insertResult, err2 := collection.InsertOne(context.TODO(), meStr)
+	if err2 != nil {
+		log.Fatal(err2)
+	}
+	fmt.Println(insertResult)
+
+	json.NewEncoder(w).Encode(meStr)
+
+	w.WriteHeader(http.StatusOK)
+
+	// ... and close the db connection
+	err = client.Disconnect(context.TODO())
+
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
 func main() {
 
 	// gather connection string from env
@@ -424,6 +593,10 @@ func main() {
 	http.HandleFunc("/findMissionById", addCORS(findMissionById))
 	http.HandleFunc("/replaceMissionSpec", addCORS(replaceMissionSpec))
 	http.HandleFunc("/updateMissionSpec", addCORS(updateMissionSpec))
+
+	http.HandleFunc("/addMissionEngineer", addCORS(addMissionEngineer))
+	http.HandleFunc("/getMissionEngineers", addCORS(getMissionEngineers))
+	http.HandleFunc("/modMissionEngineer", addCORS(modMissionEngineer))
 
 	fmt.Printf("connecting 2 on %v\n", mongoConnectionString)
 	fmt.Println("running on  port 8090")
