@@ -18,7 +18,7 @@ services:
     image: newhttp
     build:
       context: .
-      dockerfile: Dockerfile-2.yml
+      dockerfile: Dockerfile
     ports:
       - 8090:8090
     networks:

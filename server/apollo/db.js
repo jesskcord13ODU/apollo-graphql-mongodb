@@ -1,18 +1,4 @@
-import React from 'react';
-import { Container, Row, Col } from 'reactstrap';
-
-import { Routing } from './lib/composed.component';
-import { GlobalStore } from './lib/store.component.jsx';
-
-import { Header, Footer } from './components/Landmarks';
-import { Login } from "./components/Login.js";
-import { Mission } from './components/Mission.component.jsx';
-
-import './App.css';
-import { SpecsContainer } from './components/SpecificationsContainer.component.jsx';
-
-
-const mission = {
+const mission = [{
     missionId: "JCAG",
     specificationsT: [{
       category: "Environment",
@@ -100,43 +86,7 @@ const mission = {
           }
       ]
   }]
-};
-
-/**
- * Route Object
- * 
- * @param {Array} path - Holds paths for components
- * @param {React.Element} component - Holds component for paths
- * @param {String} name - Text to be displayed
- */
-const routes =[
-  {id: 0, path: ['/login','/'], name: "Login", component: <Login />},
-  {id: 1, path: ['/mission'], name: "Mission", component: <Mission />},
-  {id: 2, path: ['/specifications','/designer'], name: "Specifications", component: <SpecsContainer />}
-]
-
-const initialState = {
-  user: "",
-  Mission: {}
 }
+];
 
-export default function App() {
-    // TODO: [MEI-45] Simplify App main div soup
-    return (
-        <GlobalStore stateI={initialState}>
-            <Routing className={"app"} Header={<Header/>} Footer={<Footer/>} routes={routes}></Routing>
-        </GlobalStore>
-    );
-}
-
-// function App() {
-//     return (
-//       <Container className={"app"}>
-//           <Header />
-//           <main className={"page"}>
-//               <SpecsContainer specifications={mission.specificationsT}/>
-//           </main>
-//           <Footer />
-//       </Container>
-//     );
-//   }
+module.exports = mission;
