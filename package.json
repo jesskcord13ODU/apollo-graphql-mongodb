@@ -1,0 +1,23 @@
+{
+  "name": "muse-prototype",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vmasc-odu/muse-prototype.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vmasc-odu/muse-prototype/issues"
+  },
+  "homepage": "https://github.com/vmasc-odu/muse-prototype#readme",
+  "dependencies": {
+    
+    "node-fetch": "^2.6.0"
+  }
+}

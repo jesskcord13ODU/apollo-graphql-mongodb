@@ -1,42 +1,38 @@
+const fetch = require("node-fetch");
 
+function hello(url) {
+    return fetch(url)
+        .then(r => r.json())
+        .then(r => console.log("r-->", r))
+}
 
-package main
-/** 
- we only hit one API here.
+async function save(url, data) {
 
- the rest depend on having a database up.
+    await fetch(url, {
+        method: 'POST',
+        mode: "CORS"
+    })
+    .then(r => r.json())
+    .then(r => {
+        console.log("r-->", r)
+        return r
+    })
 
- */
-import (
-	"testing"
-	"net/http/httptest"
-	"net/http"
-	"bytes"
-	"io/ioutil"
-	"os"
-	"log"
-	"fmt"
-	"github.com/joho/godotenv"
-	"github.com/bitly/go-simplejson"
-)
+}
 
+async function getem(url) {
+    await fetch(url)
+    .then(r => r.json())
+    .then(r => {
+        console.log("r-->", r)
+        return r
+    })
+}
+hello("http://localhost:8090/hello")
 
+save("http://localhost:8090/save", 
 
-func TestPostSave(t *testing.T) {
-
-	// gather connection string from env
-	err := godotenv.Load()
-	if err != nil {
-		log.Print("No .env file found")
-		return
-	}
-	mongoConnectionString = os.Getenv("CONN_STRING")
-	// fmt.Printf("init: --> con string = %s\n", mongoConnectionString)
-
-		
-
-	var jsonStr = []byte(`
-	{
+    {
         "missionId": "JCAS",
         "specificationsT": [
             {
@@ -124,65 +120,7 @@ func TestPostSave(t *testing.T) {
             }
         ]
     }
-	`)
-	req, err := http.NewRequest("POST", "/save", bytes.NewBuffer(jsonStr))
-	if err != nil {
-		t.Fatal(err)
-	}
-	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(saveMissionToMongo)
-	handler.ServeHTTP(rr, req)
-	if status := rr.Code; status != http.StatusOK {
-		t.Errorf("handler returned wrong status code: got %v want %v",
-			status, http.StatusOK)
-	}
 
-	// Check the response body is what we expect.
-	expected := `{"message":"Successfully saved body"}`
-	if rr.Body.String() != expected {
-		t.Errorf("handler returned unexpected body: got %v want %v",
-			rr.Body.String(), expected)
-	}
-}
+)
 
-func TestPostRetrieve(t *testing.T) {
-
-		// gather connection string from env
-		err := godotenv.Load()
-		if err != nil {
-			log.Print("No .env file found")
-			return
-		}
-		mongoConnectionString = os.Getenv("CONN_STRING")
-		// fmt.Printf("init: --> con string = %s\n", mongoConnectionString)
-	
-		req, err := http.NewRequest("GET", "/retrieveMissions", nil)
-		if err != nil {
-			t.Fatal(err)
-		}
-		rr := httptest.NewRecorder()
-		handler := http.HandlerFunc(retrieveMissions)
-		handler.ServeHTTP(rr, req)
-		if status := rr.Code; status != http.StatusOK {
-			t.Errorf("handler returned wrong status code: got %v want %v",
-				status, http.StatusOK)
-		}
-	
-		// Check the response body is what we expect.
-
-		body, err := ioutil.ReadAll(rr.Body)
-		// fmt.Printf("%s\n", string(body)) //WORKS
-		// js, err := simplejson.NewJson(body)
-		
-		// total,_ := js.Get("total").String() 
-	reqJSON, errJ := simplejson.NewJson(body)
-		if errJ != nil {
-			t.Errorf("Error while tranlating the returned JSON: %s", errJ)
-		}
-	myid := reqJSON.GetIndex(0).Get("missionId").MustString()
-	if myid != "JCAS" {
-		t.Errorf("expeected: JCAS : found %s", myid)
-	}
-	fmt.Printf("my id == %v : %v \n", myid, string(myid))
-
-}
+getem("http://localhost:8090/retrieveMissions")

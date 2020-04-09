@@ -21,15 +21,12 @@ services:
       dockerfile: Dockerfile
     environment:
       - CONN_STRING="mongodb://magoo:t1y2p3e4@localhost:27017/test?authSource=admin"
+    #  - CONN_STRING=mongodb://magoo:t1y2p3e4@mongodb:27017/test?authSource=admin
     ports:
       - 8090:8090
     networks:
       - muse-net
-  
-
-
-
-volumes:
-  DBTestStorage:
-networks:
-  muse-net:
+# volumes:
+#   DBTestStorage:
+# networks:
+#   muse-net:

@@ -1,3 +1,4 @@
 .env
 server/httpServer
 /node_modules
+.DS_Store
