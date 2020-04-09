@@ -1,6 +1,5 @@
 const { ApolloServer, gql } = require('apollo-server');
 const typeDefs = require('./schema');
-//const dataSources = require('./datasource');
 const mission = require('./db');
 const fetch = require('node-fetch');
 

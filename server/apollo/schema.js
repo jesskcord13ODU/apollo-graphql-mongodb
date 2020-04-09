@@ -26,29 +26,6 @@ const typeDefs = gql`
         color: String
     }
 `;
-
-    // input MissionInput {
-    //     MissionID: String
-    //     Specs: [Spec]!
-    // }
-
-    // input SpecInput {
-    //     Category: String!
-    //     SpecEntries: [SpecEntry!]
-    // }
-
-    // input SpecEntry {
-    //     IconImage: String
-    //     Title: String
-    //     Description: String
-    //     BodyImage: String
-    //     Color: String
-    // }
-
-    // type Query {
-    //     getAllMissions:[ Mission ]!
-    // }
-
     // type Mutation {
     //     saveMission(missionInput: MissionInput): Mission
     // }
@@ -57,4 +34,5 @@ const typeDefs = gql`
     //     query: Query
     //     mutation: Mutation
     // }
+    
 module.exports = typeDefs;
