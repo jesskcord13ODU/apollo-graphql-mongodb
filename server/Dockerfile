@@ -12,7 +12,7 @@ RUN apk --no-cache add ca-certificates
 WORKDIR /app/
 COPY .env .env
 COPY --from=0 /app/httpServer .
-COPY .env .env
+#COPY .env .env
 
 #COPY .env .
 CMD ["./httpServer"]

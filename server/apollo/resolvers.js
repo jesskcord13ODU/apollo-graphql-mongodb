@@ -33,6 +33,21 @@ const resolvers = {
                         console.log(err);
                     });
         }
+    },
+    Mutation: {
+        saveMission: async (_, { missionInput }) => {
+            return await fetch('http://localhost:8090/save', {
+                method: "POST",
+                mode: 'cors',
+                headers: {
+                  'Content-Type':'application/json'
+                },
+                body: JSON.stringify(data)
+              }).then((res) => {
+                  return res.json()
+              })
+              .catch(err => err); 
+        }
     }
 };
 

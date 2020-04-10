@@ -8,14 +8,8 @@ const typeDefs = gql`
         getAllMissions:[ Mission ]!
     }
 
-   type Mission {
-        missionId: String
-        specificationsT: [ specs ]
-    }
-
-    type specs {
-        category: String!
-        specEntries: [ SpecEntry ]!
+    type Mutation {
+        saveMission(MissionInput: MissionInput): Mission
     }
 
     type SpecEntry {
@@ -25,10 +19,36 @@ const typeDefs = gql`
         bodyImage: String
         color: String
     }
+
+    type specs {
+        category: String!
+        specEntries: [ SpecEntry ]!
+    }
+
+    type Mission {
+        missionId: String
+        specificationsT: [ specs ]
+    }
+
+    input SpecEntryInput {
+        iconImage: String
+        title: String
+        description: String
+        bodyImage: String
+        color: String
+    }
+
+    input SpecInput {
+        category: String
+        specEntries: [ SpecEntryInput ]
+    }
+
+    input MissionInput {
+        missionId: String
+        specificationsT: [ SpecInput ]
+    }
 `;
-    // type Mutation {
-    //     saveMission(missionInput: MissionInput): Mission
-    // }
+ 
 
     // schema {
     //     query: Query
