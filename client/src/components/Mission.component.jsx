@@ -8,6 +8,48 @@ import metrics from '../img/metricBuilder.png';
 import missionD from '../img/missionDesigner.png';
 import threadB from '../img/threadBuilder.png';
 
+// import { gql } from "apollo-boost";
+// import { useQuery } from "react-apollo"
+// import { Query } from "react-apollo"
+
+// const GET_MISSIONS = gql`
+//     query {
+//         getAllMissions {
+//             missionId
+//             specificationsT{
+//                 category
+//                 specEntries{
+//                     title
+//                     description
+//                 }
+//             }
+//         }
+//     }
+// `;
+
+  //const { data, loading, error} = useQuery(GET_MISSIONS);
+         //return (
+        //     <Query query={GET_MISSIONS}>
+        //         {({loading, error, data }) => {
+        //             if (loading) return <div>Loading...</div>
+        //             if (error) return <div>Error</div>
+
+        //             let mission = JSON.parse(data.missionId).data
+        //             console.log("data = ", mission, data.missionId)
+        //             return (
+        //                 <div>{ data.missionId }</div>
+        //             )
+        //         }
+        //     }
+        //     </Query>
+        
+        
+            // { data["getAllMissions"].map((missionKey, i) => (
+            //     <div key={ i } className="mission">
+            //         <p>{ missionKey.missionId }</p>
+            //     </div>
+            // )) }
+
 export const Mission = () => {
     const [{ Mission }, setMission] = useCustomContext('global');
     const [state, setState] = useCustomContext('global');
