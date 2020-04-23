@@ -5,11 +5,24 @@ const typeDefs = gql`
         Mission: Mission
         specificationsT: specs
         specEntries: SpecEntry
-        getAllMissions:[ Mission ]!
+        getAllMissions:[ Mission ]
+        getMissionEng: [ MissionEng ]
     }
 
     type Mutation {
-        saveMission(MissionInput: MissionInput): Mission
+        saveMission(MissionInput: MissionInput): Mission!
+        addMissionEng(MissionEngInput: MissionEngInput): MissionEng
+
+    }
+
+    type MissionEng {
+        name: String
+        role: [ String ]
+        permissions: [ String ]
+        tags: [ String ]
+        associatedMissions: [ String ]
+        notifications: [ String ]
+        alerts: [ String ]
     }
 
     type SpecEntry {
@@ -22,12 +35,22 @@ const typeDefs = gql`
 
     type specs {
         category: String!
-        specEntries: [ SpecEntry ]!
+        specEntries: [ SpecEntry ]
     }
 
     type Mission {
         missionId: String
         specificationsT: [ specs ]
+    }
+
+    input MissionEngInput {
+         name: String
+         role: [ String ]
+         permissions: [ String ]
+         tags: [ String ]
+         associatedMissions: [ String ]
+         notifications: [ String ]
+         alerts: [ String ]
     }
 
     input SpecEntryInput {
@@ -55,4 +78,11 @@ const typeDefs = gql`
     //     mutation: Mutation
     // }
     
+
+    //modMissionEng(MissionEngInput: MissionEngInput): MissionEng!
+    //addMissionEng(name: String, role: [String], permissions: [String], tags: [String], associatedMissions: [String], notifications: [String], alerts: [String] ): MissionEng
+
+
+   
+
 module.exports = typeDefs;

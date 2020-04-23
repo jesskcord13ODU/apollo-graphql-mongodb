@@ -45,6 +45,22 @@ async function save(url= '', data= {}){
       return res;
 };
 
+async function saveMissionEng(url= '', data= {}){
+    const res = await fetch(url, {
+        method: "POST",
+        mode: 'cors',
+        headers: {
+          'Content-Type':'application/json'
+        },
+        body: JSON.stringify(data)
+      }).then(res => res.json())
+      .then(a => JSON.stringify(a))
+      .catch(err => err);
+      //return await response.json();
+      console.log(res);
+      return res;
+};
+
 // async function save(url='', data={}){
 //     return await http.request({
 //         hostname: url,
@@ -68,6 +84,21 @@ async function save(url= '', data= {}){
 //         });
 //     }).on("error", e => console.error(e.message))
 // }
+
+// saveMissionEng('http://localhost:8090/addMissionEngineer',
+// `
+//     {
+//         "name": "Robert",
+//         "role": ["National Guard", "Shipman"],
+//         "permissions": ["admin", "user"],
+//         "tags": ["Navy", "Stelth"],
+//         "associatedMissions": ["Mission1", "Mission3"],
+//         "notifications": ["Try this", "Approve this"],
+//         "alerts": ["Urgent", "asap"]
+//     }
+// `
+// )
+
 
 save('http://localhost:8090/save',     
 `
@@ -165,7 +196,7 @@ save('http://localhost:8090/save',
     console.log(err);
 });
 
-hello();
+//hello();
 
 //getMissions();
 

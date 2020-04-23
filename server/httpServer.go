@@ -446,10 +446,10 @@ func addMissionEngineer(w http.ResponseWriter, req *http.Request) {
 	// get a collection connection to the DB
 	collection := client.Database("test").Collection("engineers")
 
-	// decding the POST body
+	// decoding the POST body
 	body, err := ioutil.ReadAll(req.Body)
 	json.Unmarshal(body, &me)
-	fmt.Printf("save--> %s", me.Name)
+	fmt.Printf("save--> %s", me)
 
 	// put the body in the DB
 	insertResult, err := collection.InsertOne(context.TODO(), me)
@@ -458,9 +458,18 @@ func addMissionEngineer(w http.ResponseWriter, req *http.Request) {
 	}
 
 	fmt.Println(insertResult)
+	fmt.Println(me)
+
+
+	w.Header().Set("content-type", "application/json")
+	json.NewEncoder(w).Encode(me)
+
 	// create the response
-	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(`{"message":"Successfully saved mission engineer"}`))
+	//w.WriteHeader(http.StatusOK)
+	//w.Write([]byte(`{"message":"Successfully saved mission engineer"}`))
+	
+	
+	//json.NewEncoder(w).Encode()
 
 	// ... and close the db connection
 	err = client.Disconnect(context.TODO())
