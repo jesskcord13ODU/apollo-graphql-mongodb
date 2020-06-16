@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/vmasc-odu/muse-prototype#readme",
   "dependencies": {
-    
+    "mongodb": "^3.5.6",
     "node-fetch": "^2.6.0"
   }
 }
